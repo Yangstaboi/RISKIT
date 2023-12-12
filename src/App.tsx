@@ -12,7 +12,7 @@ const App: React.FC = () => {
             className="riskit-button"
             onClick={() => setIsMenuVisible(true)}
           >
-            Click to RISKIT
+            <span className="riskit-button-text">Click to RISKIT</span>
           </button>
         </div>
       ) : (

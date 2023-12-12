@@ -21,67 +21,81 @@
     position: absolute;
     top: 10px;
 }
-
 .riskit-button {
-    width: 220px;
-    height: 50px;
-    border: none;
-    outline: 2px solid #ff4500;
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
     color: #fff;
-    background: #111;
-    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
     position: relative;
-    z-index: 0;
-    border-radius: 10px;
-}
-
-
-.riskit-button:before {
-    content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ab, #ff0000);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
-    border-radius: 10px;
-}
-
-.riskit-button:active {
-    color: #000;
-}
-
-.riskit-button:active:after {
-    background: transparent;
-}
-
-.riskit-button:hover:before {
-    opacity: 1;
-}
-
-.riskit-button:after {
-    z-index: -1;
+    overflow: hidden;
+    z-index: 1;
+    background: #111;
+    border: none;
+    cursor: pointer;
+    outline: 3px solid #ff4500;
+  }
+  
+  .riskit-button::after {
     content: '';
     position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: #111;
+    background-color: #ff4500;
+    border-radius: 10rem;
+    z-index: -2;
+    opacity: 0; 
+    transition: opacity 0.3s;
+  }
+  
+  .riskit-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
     left: 0;
-    top: 0;
-    border-radius: 10px;
-}
+    width: 0%;
+    height: 100%;
+    background-color: #ff4500; 
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  
+  .riskit-button:hover {
+    box-shadow: 0 0 25px 10px #ff4500; /* Increased blur radius and added spread radius */
+    color: #fff;
+  }
 
-@keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
-}
+  .riskit-button:hover::before {
+    width: 100%;
+  }
+  
+  .riskit-button-text {
+    display: inline-block;
+    transition: all 0.3s; 
+  }
+  
+  .riskit-button:hover .riskit-button-text {
+    animation: shake 0.3s ease-in-out infinite;
+  }
+  
+  .riskit-button:active {
+    color: #000;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+  }
+  
 
 .game-selection {
     display: flex;
