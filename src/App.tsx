@@ -3,14 +3,27 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  function menuHandler() {
+    setClicked(true);
+    setTimeout(() => {
+      if (isMenuVisible === false) {
+        setIsMenuVisible(true);
+      } else {
+        setIsMenuVisible(false);
+      }
+      setClicked(false);
+    }, 600);
+  }
 
   return (
     <div className="app-container">
       {!isMenuVisible ? (
         <div className="centered-content">
           <button
-            className="riskit-button"
-            onClick={() => setIsMenuVisible(true)}
+            className={`riskit-button ${clicked ? 'riskit-button-clicked' : ''}`}
+            onClick={() => menuHandler()}
           >
             <span className="riskit-button-text">Click to RISKIT</span>
           </button>
