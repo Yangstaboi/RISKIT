@@ -147,10 +147,14 @@
 
 
 .game-button {
+  display: flex; /* Make it a flex container */
+  align-items: flex-start; /* Align children (text) to the start (top) */
+  justify-content: center; /* Center text horizontally */
   height: 320px;
+  padding-top: 10px;
   font-size: 22px;
   cursor: pointer;
-  border: none; /* Remove default border */
+  border: none;
   border-radius: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
   background: linear-gradient(to right, #555, #333);
@@ -158,33 +162,34 @@
   filter: brightness(0.8);
 }
 
+
 .game-button:nth-child(1) {
-  background: linear-gradient(to right, #8e2de2, #4a00e0); /* Purple gradient */
+  background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
 .game-button:nth-child(2) {
-  background: linear-gradient(to right, #f12711, #f5af19); /* Orange gradient */
+  background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
 .game-button:nth-child(3) {
-  background: linear-gradient(to right, #fc466b, #3f5efb); /* Pink to blue gradient */
+  background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
 .game-button:nth-child(4) {
-  background: linear-gradient(to right, #00f260, #0575e6); /* Green to blue gradient */
+  background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
 .game-button:nth-child(5) {
-  background: linear-gradient(to right, #e1eec3, #f05053); /* Light green to red gradient */
+  background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
 .game-button:nth-child(6) {
-  background: linear-gradient(to right, #74ebd5, #acb6e5); /* Teal to lavender gradient */
+  background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
