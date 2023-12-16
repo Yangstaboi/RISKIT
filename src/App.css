@@ -3,23 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: flex-start; /* Align items to the start to handle overflow */
-  background-color: #161616;
+  background-image: linear-gradient(to right, #000000,#10101a, #250b37,#10101a, #000000);
   overflow-y: auto; /* Allow vertical scrolling */
 }
+
 
 .centered-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
-  width: 100%; /* Full viewport width */
+  height: 100vh;
+  width: 100%;
 }
 
 .menu-container {
   display: flex;
-  color: white;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 .top-center-button {
@@ -45,7 +46,7 @@
   background: #111;
   border: none;
   cursor: pointer;
-  outline: 3px solid #ff4500;
+  outline: 3px solid #a700a2;
 }
 
 .riskit-button::after {
@@ -55,7 +56,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ff4500;
+  background-color: #a700a2;
   border-radius: 10rem;
   z-index: -2;
   opacity: 0;
@@ -69,14 +70,14 @@
   left: 0;
   width: 0%;
   height: 100%;
-  background-color: #ff4500;
+  background-color: #a700a2;
   transition: all 0.3s;
   border-radius: 10rem;
   z-index: -1;
 }
 
 .riskit-button:hover {
-  box-shadow: 0 0 25px 10px #ff4500;
+  box-shadow: 0 0 25px 10px #a700a2;
   /* Increased blur radius and added spread radius */
   color: #fff;
 }
@@ -128,41 +129,69 @@
 }
 
 .welcome-button {
-  color: white;
-  margin-top: 100px;
-  font-size: 50px;
+  color: #ffffff; /* Gold color for luxury */
+  margin-top: 50px;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
 }
+
 
 .game-selection {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  width: 100%;
-  margin: 20px 0; /* Add vertical margin for spacing */
+  gap: 20px; /* Increased gap between buttons */
+  width: 110%; /* Adjusted width to not span the entire container */
+  margin-top: 20px; /* Consistent vertical margin */
 }
 
 
 .game-button {
-  width: 300px;
-  height: 500px;
-  padding: 10px 15px;
-  margin: 10px;
-  font-size: 18px;
+  height: 320px;
+  font-size: 22px;
   cursor: pointer;
-  background-image: linear-gradient(120deg, #fea6f8 0%, #ff3037 100%);
-  color: white;
-  border-radius: 40px;
-  transition: background-color 0.3s;
+  border: none; /* Remove default border */
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: linear-gradient(to right, #555, #333);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
+  filter: brightness(0.8);
+}
+
+.game-button:nth-child(1) {
+  background: linear-gradient(to right, #8e2de2, #4a00e0); /* Purple gradient */
+  color: #ffffff;
+}
+
+.game-button:nth-child(2) {
+  background: linear-gradient(to right, #f12711, #f5af19); /* Orange gradient */
+  color: #ffffff;
+}
+
+.game-button:nth-child(3) {
+  background: linear-gradient(to right, #fc466b, #3f5efb); /* Pink to blue gradient */
+  color: #ffffff;
+}
+
+.game-button:nth-child(4) {
+  background: linear-gradient(to right, #00f260, #0575e6); /* Green to blue gradient */
+  color: #ffffff;
+}
+
+.game-button:nth-child(5) {
+  background: linear-gradient(to right, #e1eec3, #f05053); /* Light green to red gradient */
+  color: #ffffff;
+}
+
+.game-button:nth-child(6) {
+  background: linear-gradient(to right, #74ebd5, #acb6e5); /* Teal to lavender gradient */
+  color: #ffffff;
 }
 
 .game-button:hover {
-  background-image: linear-gradient(120deg, #c681c1 0%, #d9292f 100%);
-}
-
-body {
-  background-color: #1a1a1a;
-  color: white;
-  font-family: Arial, sans-serif;
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1); /* Brighten the button slightly */
 }
 
 @keyframes vanish {
@@ -190,38 +219,61 @@ body {
 }
 
 .login-form {
-  margin: auto auto;
-}
-
-.login-form h2, .login-form label {
-  color: white;
-  letter-spacing: 0.15rem;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #2a2a2a; /* Dark background for the form */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Adding some depth */
+  max-width: 400px; /* Restricting form width for better aesthetics */
 }
 
 .login-form h2 {
-  text-shadow: #ff3037 0px 0px 3px;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 2px 2px 4px #000000;
+  margin-bottom: 20px; /* Added space below the title */
 }
 
 .login-form label {
-  width: 100%;
-  font-size: 1.rem;
+  display: block;
+  color: #FFD700; /* Gold color for labels */
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .login-form input {
   width: 100%;
-  border-radius: 7px;
-  margin-bottom: 15px;;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); /* subtle inner shadow */
+  background-color: #FFF;
+}
+
+.login-form input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #FFD700; /* Highlight focus with a gold glow */
 }
 
 .login-form button {
-  margin: 20px auto 20px auto;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #752c7e; /* Bright color for the button */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .login-form button:hover {
-  box-shadow: 0 0 10px 5px #ff4500;
-  color: #fff;
+  background-color: #b041bf; /* Darker shade on hover */
+  box-shadow: 0 0 10px 5px #b041bf(255, 69, 0, 0.5); /* Adding a glow effect */
 }
 
 .submit-container {
+  margin-top: 8px;
   text-align: center;
 }

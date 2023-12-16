@@ -9,6 +9,7 @@ const MainMenu = () => {
         <button className="game-button">Poker</button>
         <button className="game-button">BlackJack</button>
         <button className="game-button">Bacarat</button>
+        <button className="game-button">Bacarat</button>
       </div>
     </div>
   );
