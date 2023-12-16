@@ -30,7 +30,7 @@
   top: 10px;
 }
 
-.riskit-button {
+.riskit-button, .login-form button {
   display: inline-block;
   padding: 0.75rem 1.25rem;
   border-radius: 10rem;
@@ -187,4 +187,41 @@ body {
     transform: scaleX(1);
     opacity: 1;
   }
+}
+
+.login-form {
+  margin: auto auto;
+}
+
+.login-form h2, .login-form label {
+  color: white;
+  letter-spacing: 0.15rem;
+}
+
+.login-form h2 {
+  text-shadow: #ff3037 0px 0px 3px;
+}
+
+.login-form label {
+  width: 100%;
+  font-size: 1.rem;
+}
+
+.login-form input {
+  width: 100%;
+  border-radius: 7px;
+  margin-bottom: 15px;;
+}
+
+.login-form button {
+  margin: 20px auto 20px auto;
+}
+
+.login-form button:hover {
+  box-shadow: 0 0 10px 5px #ff4500;
+  color: #fff;
+}
+
+.submit-container {
+  text-align: center;
 }
