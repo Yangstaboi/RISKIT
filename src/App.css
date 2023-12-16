@@ -188,3 +188,27 @@ body {
     opacity: 1;
   }
 }
+
+.login-form {
+  margin: auto auto;
+}
+
+.login-form h2, .login-form label {
+  color: white;
+  letter-spacing: 0.15rem;
+}
+
+.login-form h2 {
+  text-shadow: #ff3037 0px 0px 3px;
+}
+
+.login-form label {
+  width: 100%;
+  font-size: 1.rem;
+}
+
+.login-form input {
+  width: 100%;
+  border-radius: 7px;
+  margin-bottom: 15px;;
+}

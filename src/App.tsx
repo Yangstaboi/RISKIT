@@ -5,8 +5,8 @@ import MainMenu from "./components/MainMenu";
 import LoginForm from "./components/LoginForm";
 
 const App: React.FC = () => {
-  const [isMenuVisible, setIsMenuVisible] = useState<Boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [money, setMoney] = useState<number | ''>('');
 
@@ -20,9 +20,8 @@ const App: React.FC = () => {
     <div className="app-container">
       {!isMenuVisible ? (
         <IntroPage onMenuShow={() => setIsMenuVisible(true)} />
-      ) : ( !isLoggedIn ? <LoginForm userName={name} userMoney={money} onFormSubmit={handleFormSubmit} /> : <MainMenu /> 
+      ) : (!isLoggedIn ? <LoginForm userName={name} userMoney={money} onFormSubmit={handleFormSubmit} /> : <MainMenu />
       )}
-      <p>{name} {money}</p>
     </div>
 
   );
