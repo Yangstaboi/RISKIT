@@ -30,7 +30,7 @@
   top: 10px;
 }
 
-.riskit-button {
+.riskit-button, .login-form button {
   display: inline-block;
   padding: 0.75rem 1.25rem;
   border-radius: 10rem;
@@ -211,4 +211,17 @@ body {
   width: 100%;
   border-radius: 7px;
   margin-bottom: 15px;;
+}
+
+.login-form button {
+  margin: 20px auto 20px auto;
+}
+
+.login-form button:hover {
+  box-shadow: 0 0 10px 5px #ff4500;
+  color: #fff;
+}
+
+.submit-container {
+  text-align: center;
 }

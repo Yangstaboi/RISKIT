@@ -48,7 +48,9 @@ export default function LoginForm({onFormSubmit}: LoginProps) {
                         required
                     />
                 </div>
-                <button type="submit">Enter RISKIT</button>
+                <div className="submit-container">
+                    <button type="submit">Enter RISKIT</button>
+                </div>
             </form>
         </div>
     )
