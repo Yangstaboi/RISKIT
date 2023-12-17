@@ -139,10 +139,10 @@
 
 .game-selection {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px; /* Increased gap between buttons */
-  width: 110%; /* Adjusted width to not span the entire container */
-  margin-top: 20px; /* Consistent vertical margin */
+  grid-template-columns: repeat(auto-fill, minmax(166px, 1fr)); /* Adjust '250px' to your minimum card width */
+  gap: 20px;
+  width: 150%;
+  margin-top: 20px;
 }
 
 
