@@ -139,61 +139,73 @@
 
 .game-selection {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(166px, 1fr)); /* Adjust '250px' to your minimum card width */
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* Adjust '250px' to your minimum card width */
   gap: 20px;
   width: 150%;
   margin-top: 20px;
 }
 
 
-.game-button {
-  display: flex; /* Make it a flex container */
-  align-items: flex-start; /* Align children (text) to the start (top) */
+.game-card {
   justify-content: center; /* Center text horizontally */
   height: 320px;
-  padding-top: 10px;
   font-size: 22px;
   cursor: pointer;
-  border: none;
   border-radius: 20px;
+  outline: 3px solid white;
   transition: transform 0.3s, box-shadow 0.3s;
   background: linear-gradient(to right, #555, #333);
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
   filter: brightness(0.8);
 }
 
+.card-image {
+  background-color: aqua; /* Fallback color if the image is not available */
+  background-size: cover; /* Cover the entire space of the div */
+  background-position: center; /* Center the image within the div */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 120px;
+  width: 100%;
+}
 
-.game-button:nth-child(1) {
+.card-title {
+
+  text-align: center;
+}
+
+.game-card:nth-child(1) {
   background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
-.game-button:nth-child(2) {
+.game-card:nth-child(2) {
   background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
-.game-button:nth-child(3) {
+.game-card:nth-child(3) {
   background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
-.game-button:nth-child(4) {
+.game-card:nth-child(4) {
   background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
-.game-button:nth-child(5) {
+.game-card:nth-child(5) {
   background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
-.game-button:nth-child(6) {
+.game-card:nth-child(6) {
   background: linear-gradient(to bottom right, rgb(255, 0, 255), rgb(0, 0, 74));
   color: #ffffff;
 }
 
-.game-button:hover {
+.game-card:hover {
   transform: translateY(-5px);
   box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.5);
   filter: brightness(1.1); /* Brighten the button slightly */
