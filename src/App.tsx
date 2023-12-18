@@ -34,7 +34,10 @@ const App: React.FC = () => {
           onFormSubmit={handleFormSubmit}
         />
       ) : showMinesweeper ? (
-        <MinesweeperGame onHomeClick={goToMainMenu} />
+        <MinesweeperGame
+          onHomeClick={goToMainMenu}
+          playerMoney={typeof money === "number" ? money : 0}
+        />
       ) : (
         <MainMenu onPlayMinesweeper={() => setShowMinesweeper(true)} />
       )}

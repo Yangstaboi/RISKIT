@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "../cssstyling/MinesweeperGame.css";
+import "../CssStyling/TopContainer.css";
 
 interface MinesweeperGameProps {
   onHomeClick: () => void;
+  playerMoney: number; // Assuming you are passing this as a prop
 }
 
-const MinesweeperGame: React.FC<MinesweeperGameProps> = ({ onHomeClick }) => {
+const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
+  onHomeClick,
+  playerMoney,
+}) => {
   const [betAmount, setBetAmount] = useState<number>(1);
   const [mineCount, setMineCount] = useState<number>(1);
   const gridSize = 5;
@@ -17,8 +22,14 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({ onHomeClick }) => {
 
   return (
     <div className="minesweeper-container">
-      <div className="home-button" onClick={onHomeClick}>
-        Home
+      <div className="top-container">
+        <div className="home-button" onClick={onHomeClick}>
+          Home
+        </div>
+        <div className="player-wallet">
+          <span className="wallet-icon">🪙</span>{" "}
+          <span className="wallet-text">${playerMoney}</span>
+        </div>
       </div>
       <div className="betting-form">
         <form onSubmit={handleSubmit}>

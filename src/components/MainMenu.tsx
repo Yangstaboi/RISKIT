@@ -1,5 +1,6 @@
 import testingImage from "../assets/testing.png";
 import "../CssStyling/MainMenu.css";
+import "../CssStyling/TopContainer.css";
 
 interface MainMenuProps {
   onPlayMinesweeper: () => void;
