@@ -5,6 +5,7 @@
   align-items: flex-start; /* Align items to the start to handle overflow */
   background-image: linear-gradient(to right, #000000,#10101a, #250b37,#10101a, #000000);
   overflow-y: auto; /* Allow vertical scrolling */
+  padding-bottom:50px;
 }
 
 
@@ -130,7 +131,6 @@
 
 .welcome-button {
   color: #ffffff; /* Gold color for luxury */
-  margin-top: 50px;
   font-size: 60px;
   font-weight: bold;
   text-align: center;
@@ -139,16 +139,16 @@
 
 .game-selection {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* Adjust '250px' to your minimum card width */
-  gap: 20px;
-  width: 150%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust '250px' to your minimum card width */
+  gap: 30px;
+  width: 100%;
   margin-top: 20px;
 }
 
 
 .game-card {
   justify-content: center; /* Center text horizontally */
-  height: 320px;
+  height: 400px;
   font-size: 22px;
   cursor: pointer;
   border-radius: 20px;
@@ -171,8 +171,21 @@
 }
 
 .card-title {
-
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   text-align: center;
+}
+
+.card-description {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-left: 5px;
+  margin-right:5px;
 }
 
 .game-card:nth-child(1) {
@@ -294,3 +307,51 @@
   margin-top: 8px;
   text-align: center;
 }
+
+
+.minesweeper-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.betting-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.play-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.minesweeper-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  grid-gap: 5px;
+}
+
+.grid-cell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Add more styles for grid cells and other elements as needed */
