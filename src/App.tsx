@@ -18,6 +18,11 @@ const App: React.FC = () => {
     setIsLoggedIn(true);
   };
 
+  const goToMainMenu = () => {
+    setShowMinesweeper(false);
+    setIsMenuVisible(true);
+  };
+
   return (
     <div className="app-container">
       {!isMenuVisible ? (
@@ -29,7 +34,7 @@ const App: React.FC = () => {
           onFormSubmit={handleFormSubmit}
         />
       ) : showMinesweeper ? (
-        <MinesweeperGame />
+        <MinesweeperGame onHomeClick={goToMainMenu} />
       ) : (
         <MainMenu onPlayMinesweeper={() => setShowMinesweeper(true)} />
       )}

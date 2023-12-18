@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import "../cssstyling/MinesweeperGame.css";
 
-const MinesweeperGame: React.FC = () => {
+interface MinesweeperGameProps {
+  onHomeClick: () => void;
+}
+
+const MinesweeperGame: React.FC<MinesweeperGameProps> = ({ onHomeClick }) => {
   const [betAmount, setBetAmount] = useState<number>(1);
   const [mineCount, setMineCount] = useState<number>(1);
   const gridSize = 5;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement your bet submission logic here
     console.log(`Bet Amount: ${betAmount}, Mine Count: ${mineCount}`);
   };
 
   return (
     <div className="minesweeper-container">
+      <div className="home-button" onClick={onHomeClick}>
+        Home
+      </div>
       <div className="betting-form">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -44,9 +50,7 @@ const MinesweeperGame: React.FC = () => {
       </div>
       <div className="minesweeper-grid">
         {Array.from({ length: gridSize * gridSize }).map((_, idx) => (
-          <div key={idx} className="grid-cell">
-            {/* Grid cell content goes here */}
-          </div>
+          <div key={idx} className="grid-cell"></div>
         ))}
       </div>
     </div>

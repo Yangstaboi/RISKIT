@@ -68,3 +68,12 @@
     background-color: rgb(186, 0, 186);
   }
   
+  .home-button {
+    color: white;
+    position: absolute;
+    border-radius: 10px;
+    top: 20px;
+    padding: 15px;
+    background-color: purple;
+    cursor: pointer;
+}
