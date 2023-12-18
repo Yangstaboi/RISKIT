@@ -6,6 +6,7 @@
     background-color: #2a2a2a;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     max-width: 400px;
+    animation: fadeIn 3s;
   }
   
   .login-form h2 {
@@ -58,4 +59,16 @@
     margin-top: 8px;
     text-align: center;
   }
+
+
   
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
