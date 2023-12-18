@@ -1,0 +1,70 @@
+.minesweeper-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin-top:80px;
+    align-items: flex-start; 
+  }
+  
+  .betting-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px; 
+    background-color: #f3f3f3;
+    margin-right:20px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .play-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block; 
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .minesweeper-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 120px);
+    grid-gap: 5px;
+  }
+  
+  .grid-cell {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #ddd;
+    background-color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .grid-cell:hover {
+    background-color: rgb(186, 0, 186);
+  }
+  

@@ -1,6 +1,8 @@
 import testingImage from "../assets/testing.png";
+import "../CssStyling/MainMenu.css";
+
 interface MainMenuProps {
-  onPlayMinesweeper: () => void; // Add this prop to handle Minesweeper card clicks
+  onPlayMinesweeper: () => void;
 }
 
 const MainMenu: React.FC<MainMenuProps> = ({ onPlayMinesweeper }) => {

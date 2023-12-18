@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import "../cssstyling/MinesweeperGame.css";
 
 const MinesweeperGame: React.FC = () => {
-  const [betAmount, setBetAmount] = useState<number>(0.0001);
-  const [mineCount, setMineCount] = useState<number>(3);
+  const [betAmount, setBetAmount] = useState<number>(1);
+  const [mineCount, setMineCount] = useState<number>(1);
   const gridSize = 5;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,6 +23,7 @@ const MinesweeperGame: React.FC = () => {
               id="betAmount"
               value={betAmount}
               onChange={(e) => setBetAmount(parseFloat(e.target.value))}
+              min="1"
             />
           </div>
           <div className="form-group">

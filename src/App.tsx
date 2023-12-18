@@ -28,10 +28,10 @@ const App: React.FC = () => {
           userMoney={money}
           onFormSubmit={handleFormSubmit}
         />
-      ) : showMinesweeper ? ( // This line is new
-        <MinesweeperGame /> // This line is new
+      ) : showMinesweeper ? (
+        <MinesweeperGame />
       ) : (
-        <MainMenu onPlayMinesweeper={() => setShowMinesweeper(true)} /> // Pass a prop to show Minesweeper when a game card is clicked
+        <MainMenu onPlayMinesweeper={() => setShowMinesweeper(true)} />
       )}
     </div>
   );
