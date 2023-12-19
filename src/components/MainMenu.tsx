@@ -1,4 +1,5 @@
 import testingImage from "../assets/testing.png";
+import MineSweeperImage from "../assets/MineSweeper.png";
 import "../CssStyling/MainMenu.css";
 import "../CssStyling/TopContainer.css";
 
@@ -11,11 +12,10 @@ const MainMenu: React.FC<MainMenuProps> = ({ onPlayMinesweeper }) => {
     <div className="menu-container">
       <div className="welcome-button">Welcome to RISKIT</div>
       <div className="game-selection">
-        {/* Attach the onClick event handler to the Minesweeper card */}
         <div className="game-card" onClick={onPlayMinesweeper}>
           <div
             className="card-image"
-            style={{ backgroundImage: `url(${testingImage})` }}
+            style={{ backgroundImage: `url(${MineSweeperImage})` }}
           ></div>
           <div className="card-title">Minesweeper</div>
           <div className="card-description">Click to play Minesweeper!</div>
