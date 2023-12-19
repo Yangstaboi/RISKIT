@@ -58,6 +58,7 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
             placeholder="0"
             onChange={(e) => handleMoneyChange(e.target.value)}
             required
+            max="1000000"
           />
         </div>
         <div className="submit-container">
