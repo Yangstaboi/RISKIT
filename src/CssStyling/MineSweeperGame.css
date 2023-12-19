@@ -78,9 +78,19 @@
     background-color: rgb(186, 0, 186);
   }
 
-  /* Style for the cashout button */
+  .profit-and-cashout {
+    display: flex;
+    flex-direction: column; /* Stack profit and cashout vertically */
+    align-items: center; /* Center-align the children */
+    margin-top: 10px; /* Add some space above this section */
+  }
+  
+  .profit-display {
+    margin-bottom: 10px; /* Space between profit and cashout button */
+  }
+  
 .cashout-button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   border: none;
   color: white;
   padding: 14px 20px;
@@ -90,7 +100,19 @@
   display: inline-block;
 }
 
-/* Style for when a cell contains a coin */
 .coin-cell {
   background-color: gold;
+}
+
+.mine-cell {
+  background-color: red; 
+}
+
+
+.revealed-mine {
+  background-color: red;
+}
+
+.revealed-coin {
+  background-color: lightgreen;
 }

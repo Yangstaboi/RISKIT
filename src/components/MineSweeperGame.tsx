@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../cssstyling/MinesweeperGame.css";
 
 interface MinesweeperGameProps {
@@ -17,22 +17,62 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
   const [grid, setGrid] = useState<(string | null)[][]>([]);
   const [profit, setProfit] = useState<number>(0);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
-  const gridSize = 5;
+  const [gridSize, setGridSize] = useState<number>(25);
+  const [freeSpaces, setFreeSpaces] = useState<number>(24);
+  const [successfulClicks, setSuccessfulClicks] = useState<number>(0);
+  const originalFreeSpacesRef = useRef<number>(24);
+  const [gameOver, setGameOver] = useState<boolean>(false);
+  const gridNum = 5;
 
   useEffect(() => {
     initializeGrid();
   }, []);
 
-  const calculateOdds = () => {
-    return mineCount / (gridSize * gridSize);
+  const calculateCumulativeOdds = (clickedCells: number) => {
+    let odds = 1;
+    let tempGridSize = 25;
+    let originalFreeSpaces = originalFreeSpacesRef.current;
+    for (let i = 0; i < clickedCells; i++) {
+      odds *= (originalFreeSpaces - i) / (tempGridSize - i);
+      odds = parseFloat(odds.toFixed(2));
+    }
+    return odds;
   };
 
-  const initializeGrid = () => {
-    setGrid(
-      Array(gridSize)
-        .fill(null)
-        .map(() => Array(gridSize).fill(null))
+  const revealGrid = () => {
+    const newGrid = grid.map((row) =>
+      row.map((cell) => {
+        if (cell === "mine") {
+          return "revealed-mine";
+        } else if (!cell) {
+          return "revealed-coin";
+        }
+        return cell;
+      })
     );
+    setGrid(newGrid);
+  };
+
+  useEffect(() => {
+    let cumulativeOdds = calculateCumulativeOdds(successfulClicks);
+    let oddsMultiplier = 1 / cumulativeOdds;
+    let potentialProfit = betAmount * oddsMultiplier;
+    let currentPayout = potentialProfit - betAmount;
+
+    setProfit(currentPayout);
+  }, [successfulClicks, freeSpaces, gridSize, betAmount]);
+
+  const initializeGrid = () => {
+    let newGrid = Array(gridNum)
+      .fill(null)
+      .map(() => Array(gridNum).fill(null));
+    placeMines(newGrid, mineCount);
+    setGrid(newGrid);
+    setGridSize(25);
+    setFreeSpaces(25 - mineCount);
+    originalFreeSpacesRef.current = 25 - mineCount;
+    setSuccessfulClicks(0);
+    setGameOver(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,10 +81,23 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
       alert("Not enough funds");
       return;
     }
-    updatePlayerMoney(-betAmount);
     initializeGrid();
     setProfit(0);
     setGameStarted(true);
+  };
+
+  const placeMines = (grid: (string | null)[][], mineCount: number) => {
+    let minesPlaced = 0;
+    while (minesPlaced < mineCount) {
+      const rowIndex = Math.floor(Math.random() * gridNum);
+      const colIndex = Math.floor(Math.random() * gridNum);
+
+      if (grid[rowIndex][colIndex] !== "mine") {
+        grid[rowIndex][colIndex] = "mine";
+
+        minesPlaced++;
+      }
+    }
   };
 
   const handleCellClick = (rowIndex: number, colIndex: number) => {
@@ -53,24 +106,34 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
       return;
     }
 
-    const newGrid = grid.slice();
-    const isMine = Math.random() < calculateOdds();
-    if (isMine) {
+    const newGrid = [...grid.map((row) => [...row])];
+    const cell = newGrid[rowIndex][colIndex];
+
+    if (cell === "mine") {
+      console.log("Before hitting mine:", playerMoney);
       alert("Boom! You hit a mine.");
       setGameStarted(false);
       updatePlayerMoney(-betAmount);
-      initializeGrid();
+      console.log("After hitting mine:", playerMoney);
+      setGameOver(true);
+      revealGrid();
+    } else if (cell === "clicked" || cell === "coin") {
+      alert("This cell has already been clicked");
+      return;
     } else {
-      const payout = betAmount * calculateOdds();
-      setProfit(profit + payout);
+      setSuccessfulClicks(successfulClicks + 1);
+      setFreeSpaces(freeSpaces - 1);
+      setGridSize(gridSize - 1);
+
       newGrid[rowIndex][colIndex] = "coin";
+      setGrid(newGrid);
     }
 
     setGrid(newGrid);
   };
 
   const handleCashOut = () => {
-    updatePlayerMoney(betAmount + profit);
+    updatePlayerMoney(profit);
     setGameStarted(false);
     initializeGrid();
   };
@@ -93,7 +156,7 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
         </button>
         <div className="player-wallet">
           <span className="wallet-icon">🪙</span>
-          <span>${playerMoney}</span>
+          <span>${playerMoney.toFixed(2)}</span>
         </div>
       </div>
       <form className="betting-form" onSubmit={handleSubmit}>
@@ -103,10 +166,13 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
             type="number"
             id="betAmount"
             value={betAmount}
+            placeholder="1"
             onChange={(e) => setBetAmount(parseFloat(e.target.value))}
             min="1"
+            max={playerMoney}
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="mineCount">Mines:</label>
           <input
@@ -121,6 +187,14 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
         <button type="submit" className="play-button">
           PLAY
         </button>
+        {gameStarted && (
+          <div className="profit-and-cashout">
+            <div className="profit-display">Profit: ${profit.toFixed(2)}</div>
+            <button onClick={handleCashOut} className="cashout-button">
+              Cashout
+            </button>
+          </div>
+        )}
       </form>
 
       {/* Minesweeper Grid */}
@@ -129,24 +203,19 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
           row.map((cell, colIndex) => (
             <div
               key={`${rowIndex}-${colIndex}`}
-              className={`grid-cell ${cell ? "coin-cell" : ""}`}
+              className={`grid-cell ${cell === "coin" ? "coin-cell" : ""} ${
+                gameOver && cell === "mine" ? "mine-cell" : ""
+              } ${gameOver && !cell ? "revealed-coin" : ""}`}
               onClick={() => handleCellClick(rowIndex, colIndex)}
             >
-              {cell === "coin" ? "🪙" : ""}
+              {/* Display coin icon for cells that are coins or revealed coins */}
+              {(cell === "coin" || (gameOver && !cell)) && "🪙"}
+              {/* Display mine icon for cells that are revealed mines */}
+              {gameOver && cell === "mine" && "💣"}
             </div>
           ))
         )}
       </div>
-
-      {/* Profit and Cashout */}
-      {gameStarted && (
-        <div className="profit-display">
-          Profit: ${profit.toFixed(2)}
-          <button onClick={handleCashOut} className="cashout-button">
-            Cashout
-          </button>
-        </div>
-      )}
     </div>
   );
 };
