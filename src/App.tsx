@@ -10,12 +10,16 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
-  const [money, setMoney] = useState<number | "">("");
+  const [money, setMoney] = useState<number>(0); // Changed from number | "" to just number for simplicity
 
   const handleFormSubmit = (userName: string, userMoney: number) => {
     setName(userName);
     setMoney(userMoney);
     setIsLoggedIn(true);
+  };
+
+  const updatePlayerMoney = (amount: number) => {
+    setMoney((prevMoney) => prevMoney + amount);
   };
 
   const goToMainMenu = () => {
@@ -36,7 +40,8 @@ const App: React.FC = () => {
       ) : showMinesweeper ? (
         <MinesweeperGame
           onHomeClick={goToMainMenu}
-          playerMoney={typeof money === "number" ? money : 0}
+          updatePlayerMoney={updatePlayerMoney}
+          playerMoney={money}
         />
       ) : (
         <MainMenu onPlayMinesweeper={() => setShowMinesweeper(true)} />
