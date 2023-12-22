@@ -10,7 +10,8 @@ interface MainMenuProps {
 const MainMenu: React.FC<MainMenuProps> = ({ onPlayMinesweeper }) => {
   return (
     <div className="menu-container">
-      <div className="welcome-button">Welcome to RISKIT</div>
+      <div className="fixed-top-left welcome-button">RISKIT</div>
+
       <div className="game-selection">
         <div className="game-card" onClick={onPlayMinesweeper}>
           <div
