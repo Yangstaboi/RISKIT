@@ -219,9 +219,13 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
               onClick={() => handleCellClick(rowIndex, colIndex)}
             >
               {/* Display coin icon for cells that are coins or revealed coins */}
-              {(cell === "coin" || (gameOver && !cell)) && "🪙"}
+              {(cell === "coin" || (gameOver && !cell)) && (
+                <span className="coin-icon">🪙</span>
+              )}
               {/* Display mine icon for cells that are revealed mines */}
-              {gameOver && cell === "mine" && "💣"}
+              {gameOver && cell === "mine" && (
+                <span className="mine-icon">💣</span>
+              )}
             </div>
           ))
         )}

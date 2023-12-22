@@ -114,8 +114,17 @@
   display: inline-block;
 }
 
+.coin-icon {
+  font-size: 48px;
+}
+
+.mine-icon {
+  font-size: 48px;
+}
+
+
 .coin-cell {
-  background-color: gold;
+  background-color: yellow;
 }
 
 .mine-cell {
