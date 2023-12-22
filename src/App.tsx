@@ -44,7 +44,10 @@ const App: React.FC = () => {
           playerMoney={money}
         />
       ) : (
-        <MainMenu onPlayMinesweeper={() => setShowMinesweeper(true)} />
+        <MainMenu
+          onPlayMinesweeper={() => setShowMinesweeper(true)}
+          playerMoney={money}
+        />
       )}
     </div>
   );

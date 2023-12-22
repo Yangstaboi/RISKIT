@@ -5,13 +5,22 @@ import "../CssStyling/TopContainer.css";
 
 interface MainMenuProps {
   onPlayMinesweeper: () => void;
+  playerMoney: number;
 }
 
-const MainMenu: React.FC<MainMenuProps> = ({ onPlayMinesweeper }) => {
+const MainMenu: React.FC<MainMenuProps> = ({
+  onPlayMinesweeper,
+  playerMoney,
+}) => {
   return (
     <div className="menu-container">
       <div className="fixed-top-left welcome-button">RISKIT</div>
-
+      <div className="top-container">
+        <div className="player-wallet">
+          <span className="wallet-icon">🪙</span>
+          <span>${playerMoney.toFixed(2)}</span>
+        </div>
+      </div>
       <div className="game-selection">
         <div className="game-card" onClick={onPlayMinesweeper}>
           <div
