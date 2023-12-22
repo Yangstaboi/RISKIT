@@ -22,6 +22,11 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
   const [successfulClicks, setSuccessfulClicks] = useState<number>(0);
   const originalFreeSpacesRef = useRef<number>(24);
   const [gameOver, setGameOver] = useState<boolean>(false);
+  const [flippingCell, setFlippingCell] = useState<{
+    row: number;
+    col: number;
+  } | null>(null);
+
   const gridNum = 5;
 
   useEffect(() => {
@@ -108,17 +113,16 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
 
     const newGrid = [...grid.map((row) => [...row])];
     const cell = newGrid[rowIndex][colIndex];
-
+    setFlippingCell({ row: rowIndex, col: colIndex });
     if (cell === "mine") {
+      setTimeout(() => setFlippingCell(null), 300);
       console.log("Before hitting mine:", playerMoney);
-      alert("Boom! You hit a mine.");
       setGameStarted(false);
       updatePlayerMoney(-betAmount);
       console.log("After hitting mine:", playerMoney);
       setGameOver(true);
       revealGrid();
     } else if (cell === "clicked" || cell === "coin") {
-      alert("This cell has already been clicked");
       return;
     } else {
       setSuccessfulClicks(successfulClicks + 1);
@@ -128,7 +132,7 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
       newGrid[rowIndex][colIndex] = "coin";
       setGrid(newGrid);
     }
-
+    setTimeout(() => setFlippingCell(null), 300);
     setGrid(newGrid);
   };
 
@@ -187,7 +191,7 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
         <button type="submit" className="play-button">
           PLAY
         </button>
-        {gameStarted && (
+        {gameStarted && !gameOver && (
           <div className="profit-and-cashout">
             <div className="profit-display">Profit: ${profit.toFixed(2)}</div>
             <button onClick={handleCashOut} className="cashout-button">
@@ -205,7 +209,13 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
               key={`${rowIndex}-${colIndex}`}
               className={`grid-cell ${cell === "coin" ? "coin-cell" : ""} ${
                 gameOver && cell === "mine" ? "mine-cell" : ""
-              } ${gameOver && !cell ? "revealed-coin" : ""}`}
+              } ${gameOver && !cell ? "revealed-coin" : ""} ${
+                flippingCell &&
+                flippingCell.row === rowIndex &&
+                flippingCell.col === colIndex
+                  ? "flipping"
+                  : ""
+              }`}
               onClick={() => handleCellClick(rowIndex, colIndex)}
             >
               {/* Display coin icon for cells that are coins or revealed coins */}

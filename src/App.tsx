@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
-  const [money, setMoney] = useState<number>(0); // Changed from number | "" to just number for simplicity
+  const [money, setMoney] = useState<number>(0);
 
   const handleFormSubmit = (userName: string, userMoney: number) => {
     setName(userName);

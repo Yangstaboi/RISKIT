@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     max-width: 200px;
-    border: 5px solid #d8d6d6; /* Larger border for better visual framing */
+    border: 5px solid #d8d6d6;
     padding: 10px;
     border-radius: 5px; 
     background-color: #30203b;
@@ -53,13 +53,25 @@
     display: grid;
     grid-template-columns: repeat(5, 120px);
     grid-gap: 7px;
-    border: 5px solid #f3f3f3; /* Larger border for better visual framing */
-    padding: 20px; /* Additional padding to ensure the cells don't touch the border */
-    background-color: #250b37; /* Background color for the border area */
-    border-radius: 15px; /* Rounded corners for the border */
+    border: 5px solid #f3f3f3; 
+    padding: 20px;
+    background-color: #250b37; 
+    border-radius: 15px;
   }
   
-
+  @keyframes flip {
+    0% {
+      transform: rotateY(0);
+    }
+    100% {
+      transform: rotateY(180deg);
+    }
+  }
+  
+  .flipping {
+    animation: flip 0.3s forwards;
+  }
+  
 
   .grid-cell {
     width: 120px;
@@ -74,19 +86,21 @@
     transition: background-color 0.3s;
   }
   
-  .grid-cell:hover {
-    background-color: rgb(186, 0, 186);
-  }
+
+.grid-cell:not(.coin-cell):not(.mine-cell):not(.revealed-mine):not(.revealed-coin):hover {
+  background-color: rgb(186, 0, 186);
+}
+
 
   .profit-and-cashout {
     display: flex;
-    flex-direction: column; /* Stack profit and cashout vertically */
-    align-items: center; /* Center-align the children */
-    margin-top: 10px; /* Add some space above this section */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
   }
   
   .profit-display {
-    margin-bottom: 10px; /* Space between profit and cashout button */
+    margin-bottom: 10px;
   }
   
 .cashout-button {
