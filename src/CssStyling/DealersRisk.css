@@ -1,7 +1,7 @@
 /* DealersRisk.css */
 .dealers-risk-container {
     display: flex;
-    flex-direction: column; /* Change to column to structure top-container and the rest */
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     padding: 40px;
@@ -112,12 +112,12 @@
   .option-buttons {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px; /* Spacing between option buttons and betting form */
+    margin-bottom: 20px; 
   }
   
   .option-button {
     padding: 10px 20px;
-    background-color: #6e6e6e; /* Neutral color */
+    background-color: #6e6e6e; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -126,32 +126,31 @@
   }
   
   .option-button.active {
-    background-color: #ff00ff; /* Active state color */
+    background-color: #ff00ff;
   }
   
   .number-button {
-    font-size: 2rem; /* Match the font size of suit buttons */
-    padding: 10px 15px; /* Match the padding of suit buttons */
-    background-color: #ff00ff; /* Same background color as suit buttons */
-    color: #ffffff; /* Same text color as suit buttons */
+    font-size: 2rem;
+    padding: 10px 15px; 
+    background-color: #ff00ff; 
+    color: #ffffff;
     border: none;
-    border-radius: 5px; /* Same border radius as suit buttons */
+    border-radius: 5px; 
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 51px;
   }
   
   .number-button:hover {
-    background-color: #ffffff; /* Same hover effect as suit buttons */
+    background-color: #ffffff;
     color: #000000;
   }
   
-  /* Adjust the .suit-selection-section if needed to accommodate number buttons */
   .suit-selection-section {
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap if they don't fit in one line */
+    flex-wrap: wrap;
     gap: 10px;
-    justify-content: center; /* Center the buttons */
+    justify-content: center;
     margin-top: 20px;
   }
   

@@ -127,7 +127,6 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
 }) => {
   const [option, setOption] = useState("suits");
   const [betAmount, setBetAmount] = useState(1);
-  const [isPlayButtonDisabled, setIsPlayButtonDisabled] = useState(false);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const suitSymbols = {
@@ -137,9 +136,8 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
     spades: "♠",
   };
 
-  type Suit = keyof typeof suitSymbols; // 'clubs' | 'diamonds' | 'hearts' | 'spades'
+  type Suit = keyof typeof suitSymbols;
 
-  // Update the suits array to be of type Suit[]
   const suits: Suit[] = ["clubs", "diamonds", "hearts", "spades"];
 
   const numbers = [
@@ -189,37 +187,23 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
     K: "king",
   };
 
-  // Adjusted handlePlayClick
-  const handlePlayClick = () => {
-    if (selectedCard === null) {
-      const randomIndex = Math.floor(Math.random() * cardImages.length);
-      console.log("Play clicked - New card index:", randomIndex);
-    }
-
-    setIsPlayButtonDisabled(false);
-  };
-
   const handleCardClick = (chosenOption: string) => {
-    console.log("Card clicked - Option:", chosenOption);
-
-    // Generate a new card index every time a card is clicked
     const newCardIndex = Math.floor(Math.random() * cardImages.length);
     const newCardImage = cardImages[newCardIndex];
-    setSelectedCard(newCardImage); // Reveal the new card
+    setSelectedCard(newCardImage);
 
-    // Debugging the correct card parts
     const correctCardParts = newCardImage.split("/").pop()?.split("_of_");
     if (correctCardParts) {
       const [numberPart, suitPartWithExtension] = correctCardParts;
-      const suitPart = suitPartWithExtension.split(".")[0]; // Get the suit part without the file extension
+      const suitPart = suitPartWithExtension.split(".")[0];
 
       let isCorrect = false;
-      let payoutMultiplier = 0; // This will be determined by whether the guess is for suit or number
+      let payoutMultiplier = 0;
 
       // When the option is 'suits', we check if the chosenOption matches the suit part directly
       if (option === "suits" && chosenOption === suitPart) {
         isCorrect = true;
-        payoutMultiplier = 3; // Set the payout multiplier for suits
+        payoutMultiplier = 3.5; // Set the payout multiplier for suits
       }
       // When the option is 'numbers', we convert the number part to its corresponding word
       // and then compare it with the chosen option after converting it using the numberWordMap
@@ -230,24 +214,18 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
           numberWordMap[chosenOption as NumberOption];
         if (convertedChosenOption.toLowerCase() === numberWord.toLowerCase()) {
           isCorrect = true;
-          payoutMultiplier = 12; // Set the payout multiplier for numbers
+          payoutMultiplier = 12;
         }
       }
 
       if (isCorrect) {
         const winnings = betAmount * payoutMultiplier;
-        console.log(`Correct! Adding ${winnings}`);
-        updatePlayerMoney(winnings); // Increase player money by the winnings
+        updatePlayerMoney(winnings);
       } else {
-        console.log(`Incorrect! Subtracting ${betAmount}`);
-        updatePlayerMoney(-betAmount); // Decrease player money by the bet amount
+        updatePlayerMoney(-betAmount);
       }
-    } else {
-      console.error("Error parsing card image file name.");
     }
   };
-
-  // ...
 
   return (
     <div className="dealers-risk-container">
@@ -290,13 +268,6 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
               onChange={(e) => setBetAmount(Number(e.target.value))}
               min="1"
             />
-            <button
-              className="play-button"
-              onClick={handlePlayClick}
-              disabled={isPlayButtonDisabled}
-            >
-              Play
-            </button>
           </form>
           <section className="suit-selection-section">
             {option === "suits"
@@ -305,7 +276,6 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
                     key={suit}
                     className="suit-button"
                     onClick={() => handleCardClick(suit)}
-                    disabled={isPlayButtonDisabled}
                   >
                     {suitSymbols[suit]}
                   </button>
@@ -315,7 +285,6 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
                     key={number}
                     className="number-button"
                     onClick={() => handleCardClick(number)}
-                    disabled={isPlayButtonDisabled}
                   >
                     {number}
                   </button>
