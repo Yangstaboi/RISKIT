@@ -4,11 +4,13 @@ import IntroPage from "./components/IntroPage";
 import MainMenu from "./components/MainMenu";
 import LoginForm from "./components/LoginForm";
 import MinesweeperGame from "./components/MineSweeperGame";
+import DealersRisk from "./components/DealersRisk";
 
 const App: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
+  const [showDealersRisk, setShowDealersRisk] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [money, setMoney] = useState<number>(0);
 
@@ -27,9 +29,23 @@ const App: React.FC = () => {
     setIsMenuVisible(true);
   };
 
+  const goToDealersRisk = () => {
+    setIsMenuVisible(false);
+    setShowDealersRisk(true);
+  };
+
   return (
     <div className="app-container">
-      {!isMenuVisible ? (
+      {showDealersRisk ? (
+        <DealersRisk
+          onHomeClick={() => {
+            setShowDealersRisk(false);
+            setIsMenuVisible(true);
+          }}
+          updatePlayerMoney={updatePlayerMoney}
+          playerMoney={money}
+        />
+      ) : !isMenuVisible ? (
         <IntroPage onMenuShow={() => setIsMenuVisible(true)} />
       ) : !isLoggedIn ? (
         <LoginForm
@@ -46,6 +62,7 @@ const App: React.FC = () => {
       ) : (
         <MainMenu
           onPlayMinesweeper={() => setShowMinesweeper(true)}
+          onPlayDealersRisk={goToDealersRisk}
           playerMoney={money}
         />
       )}
