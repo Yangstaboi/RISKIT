@@ -130,7 +130,18 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
   const [isPlayButtonDisabled, setIsPlayButtonDisabled] = useState(false);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
-  const suits = ["clubs", "diamonds", "hearts", "spades"];
+  const suitSymbols = {
+    clubs: "♣",
+    diamonds: "♦",
+    hearts: "♥",
+    spades: "♠",
+  };
+
+  type Suit = keyof typeof suitSymbols; // 'clubs' | 'diamonds' | 'hearts' | 'spades'
+
+  // Update the suits array to be of type Suit[]
+  const suits: Suit[] = ["clubs", "diamonds", "hearts", "spades"];
+
   const numbers = [
     "1",
     "2",
@@ -180,18 +191,13 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
 
   // Adjusted handlePlayClick
   const handlePlayClick = () => {
-    // Only generate a new card index when play is initially clicked
-    // or when the bet amount is changed.
     if (selectedCard === null) {
       const randomIndex = Math.floor(Math.random() * cardImages.length);
       console.log("Play clicked - New card index:", randomIndex);
     }
 
-    setIsPlayButtonDisabled(false); // Keep the suit/number buttons enabled
+    setIsPlayButtonDisabled(false);
   };
-
-  // Adjusted handleCardClick
-  // ...
 
   const handleCardClick = (chosenOption: string) => {
     console.log("Card clicked - Option:", chosenOption);
@@ -213,7 +219,7 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
       // When the option is 'suits', we check if the chosenOption matches the suit part directly
       if (option === "suits" && chosenOption === suitPart) {
         isCorrect = true;
-        payoutMultiplier = 3.9; // Set the payout multiplier for suits
+        payoutMultiplier = 3; // Set the payout multiplier for suits
       }
       // When the option is 'numbers', we convert the number part to its corresponding word
       // and then compare it with the chosen option after converting it using the numberWordMap
@@ -224,7 +230,7 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
           numberWordMap[chosenOption as NumberOption];
         if (convertedChosenOption.toLowerCase() === numberWord.toLowerCase()) {
           isCorrect = true;
-          payoutMultiplier = 12.8; // Set the payout multiplier for numbers
+          payoutMultiplier = 12; // Set the payout multiplier for numbers
         }
       }
 
@@ -299,9 +305,9 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
                     key={suit}
                     className="suit-button"
                     onClick={() => handleCardClick(suit)}
-                    disabled={isPlayButtonDisabled} // This should be true to enable the button
+                    disabled={isPlayButtonDisabled}
                   >
-                    {suit}
+                    {suitSymbols[suit]}
                   </button>
                 ))
               : numbers.map((number) => (
