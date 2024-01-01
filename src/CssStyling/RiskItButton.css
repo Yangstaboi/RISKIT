@@ -1,0 +1,120 @@
+
+.riskit-button, .login-form button {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: #111;
+    border: none;
+    cursor: pointer;
+    outline: 3px solid #a700a2;
+  }
+  
+  .riskit-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #a700a2;
+    border-radius: 10rem;
+    z-index: -2;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .riskit-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #a700a2;
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+  }
+  
+  .riskit-button:hover {
+    box-shadow: 0 0 25px 10px #a700a2;
+    color: #fff;
+  }
+  
+  .riskit-button:hover::before {
+    width: 100%;
+  }
+  
+  .riskit-button-text {
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  
+  .riskit-button:hover .riskit-button-text {
+    animation: shake 0.3s ease-in-out infinite;
+  }
+  
+  .riskit-button:active {
+    color: #000;
+  }
+  
+  .riskit-button-clicked {
+    animation-name: vanish;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+  
+    25% {
+      transform: translateX(-5px);
+    }
+  
+    50% {
+      transform: translateX(0);
+    }
+  
+    75% {
+      transform: translateX(5px);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes vanish {
+    0% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes appear {
+    0% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }

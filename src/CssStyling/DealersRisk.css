@@ -1,0 +1,167 @@
+/* DealersRisk.css */
+.dealers-risk-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+    margin-top: 80px;
+    box-sizing: border-box;
+  }
+  
+  .dealers-betting-form {
+    color: white;
+    background: rgba(101, 10, 141, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+  }
+  
+  .dealers-betting-form input {
+    padding: 10px;
+    background: white;
+    border: 1px solid #ffffff;
+    color: #000;
+    border-radius: 4px;
+  }
+  
+  .dealers-betting-form button {
+    padding: 10px 20px;
+    background-color: #ff00ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dealers-betting-form button:hover {
+    background-color: #a071a1;
+  }
+  
+  .betting-and-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .betting-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px; /* Adjust this if necessary to allow wrapping */
+    max-width:240px;
+}
+  
+  .card-display-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-back {
+    width: 320px;
+    height: 464px;
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-image: url('../assets/CardBack.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .suit-selection-section {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+    gap: 10px;
+    justify-content: flex-start; /* Align to the start */
+    align-items: center; /* Center items vertically */
+    max-width: 100%; /* Adjust this value to control wrapping */
+  }
+  
+
+  .suit-button {
+    font-size: 2rem;
+    background-color: #ff00ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .suit-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+
+.option-and-betting-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .option-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px; 
+  }
+  
+  .option-button {
+    padding: 10px 20px;
+    background-color: #6e6e6e; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .option-button.active {
+    background-color: #ff00ff;
+  }
+  
+  .number-button {
+    font-size: 2rem;
+    padding: 10px 15px; 
+    background-color: #ff00ff; 
+    color: #ffffff;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 51px;
+  }
+  
+  .number-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .suit-selection-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .card-image1 {
+    width: 320px;
+    height: 464px;
+    background-color: #ff0000;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+  }
