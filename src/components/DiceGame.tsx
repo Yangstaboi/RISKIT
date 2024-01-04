@@ -16,6 +16,10 @@ const DiceGame: React.FC<DiceGameProps> = ({
   const [sliderValue, setSliderValue] = useState<number>(50);
   const [multiplier, setMultiplier] = useState<number>(2);
   const [winChance, setWinChance] = useState<number>(50);
+  const [betAmount, setBetAmount] = useState<number>(0);
+  const [profitOnWin, setProfitOnWin] = useState<number>(0);
+  const [gameResult, setGameResult] = useState<string | null>(null);
+  const [randomNumber, setRandomNumber] = useState<number | null>(null);
 
   useEffect(() => {
     const winChance = 100 - sliderValue;
@@ -24,6 +28,10 @@ const DiceGame: React.FC<DiceGameProps> = ({
     setWinChance(winChance);
     setMultiplier(multiplier);
   }, [sliderValue]);
+
+  useEffect(() => {
+    setProfitOnWin(betAmount * multiplier);
+  }, [betAmount, multiplier]);
 
   const handleHomeClick = () => {
     if (gameStarted) {
@@ -35,8 +43,44 @@ const DiceGame: React.FC<DiceGameProps> = ({
     onHomeClick();
   };
 
+  const handleBet = () => {
+    // Ensure the user has entered a bet amount greater than 0
+    if (playerMoney < betAmount) {
+      alert("You don't have enough money to place this bet."); // or handle this however you prefer
+      return; // Exit the function early
+    }
+    if (betAmount <= 0) {
+      setGameResult("Please enter a bet amount.");
+      return;
+    }
+
+    // Start the game
+    setGameStarted(true);
+
+    // Generate a random number for the result
+    const generatedNumber = Math.floor(Math.random() * 101);
+    setRandomNumber(generatedNumber);
+
+    if (sliderValue <= generatedNumber) {
+      // User wins, calculate profit
+      const profit = betAmount * multiplier;
+      updatePlayerMoney(profit - betAmount);
+      setGameResult(`You won! Number was ${generatedNumber}.`);
+    } else {
+      // User loses, subtract bet amount
+      updatePlayerMoney(-betAmount);
+      setGameResult(`You lost! Number was ${generatedNumber}.`);
+    }
+  };
+
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSliderValue(Number(event.target.value));
+  };
+
+  const handleBetAmountChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setBetAmount(Number(event.target.value));
   };
 
   return (
@@ -53,18 +97,24 @@ const DiceGame: React.FC<DiceGameProps> = ({
       <div className="betting-section">
         <div className="input-group">
           <label htmlFor="bet-amount">Bet Amount</label>
-          <input type="number" id="bet-amount" placeholder="Enter bet amount" />
-        </div>
-        <div className="input-group">
-          <label htmlFor="profit-win">Profit on Win</label>
           <input
             type="number"
-            id="profit-win"
-            placeholder="Potential profit"
-            disabled
+            id="bet-amount"
+            value={betAmount}
+            onChange={handleBetAmountChange}
+            placeholder="Enter bet amount"
           />
         </div>
-        <button className="bet-button">Bet</button>
+        <div className="profit-display">
+          <label htmlFor="profit-win">Profit on Win</label>
+          <div id="profit-win" className="profit-value">
+            ${profitOnWin.toFixed(2)}
+          </div>
+        </div>
+        <button className="bet-button" onClick={handleBet}>
+          Bet
+        </button>
+        {gameResult && <div className="game-result">{gameResult}</div>}
       </div>
       <div className="game-visualization-section">
         <div className="slider-container">
@@ -95,6 +145,9 @@ const DiceGame: React.FC<DiceGameProps> = ({
             <div className="section-border">{winChance}%</div>
           </div>
         </div>
+        {randomNumber !== null && (
+          <div className="random-number-display">{`🎲 ${randomNumber}`}</div>
+        )}
       </div>
     </div>
   );
