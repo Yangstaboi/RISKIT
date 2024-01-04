@@ -16,7 +16,7 @@ const DiceGame: React.FC<DiceGameProps> = ({
   const [sliderValue, setSliderValue] = useState<number>(50);
   const [multiplier, setMultiplier] = useState<number>(2);
   const [winChance, setWinChance] = useState<number>(50);
-  const [betAmount, setBetAmount] = useState<number>(0);
+  const [betAmount, setBetAmount] = useState<string>("");
   const [profitOnWin, setProfitOnWin] = useState<number>(0);
   const [gameResult, setGameResult] = useState<string | null>(null);
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
@@ -30,7 +30,8 @@ const DiceGame: React.FC<DiceGameProps> = ({
   }, [sliderValue]);
 
   useEffect(() => {
-    setProfitOnWin(betAmount * multiplier);
+    const bet = parseFloat(betAmount);
+    setProfitOnWin(bet * multiplier);
   }, [betAmount, multiplier]);
 
   const handleHomeClick = () => {
@@ -44,12 +45,17 @@ const DiceGame: React.FC<DiceGameProps> = ({
   };
 
   const handleBet = () => {
+    const bet = parseFloat(betAmount);
+    if (isNaN(bet) || bet <= 0) {
+      setGameResult("Please enter a valid bet amount.");
+      return;
+    }
     // Ensure the user has entered a bet amount greater than 0
-    if (playerMoney < betAmount) {
+    if (playerMoney < bet) {
       alert("You don't have enough money to place this bet."); // or handle this however you prefer
       return; // Exit the function early
     }
-    if (betAmount <= 0) {
+    if (bet <= 0) {
       setGameResult("Please enter a bet amount.");
       return;
     }
@@ -63,12 +69,12 @@ const DiceGame: React.FC<DiceGameProps> = ({
 
     if (sliderValue <= generatedNumber) {
       // User wins, calculate profit
-      const profit = betAmount * multiplier;
-      updatePlayerMoney(profit - betAmount);
+      const profit = bet * multiplier;
+      updatePlayerMoney(profit - bet);
       setGameResult(`You won! Number was ${generatedNumber}.`);
     } else {
       // User loses, subtract bet amount
-      updatePlayerMoney(-betAmount);
+      updatePlayerMoney(-bet);
       setGameResult(`You lost! Number was ${generatedNumber}.`);
     }
   };
@@ -80,7 +86,12 @@ const DiceGame: React.FC<DiceGameProps> = ({
   const handleBetAmountChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setBetAmount(Number(event.target.value));
+    const value = event.target.value;
+    // Allow the user to clear the input or type a number
+    if (value === "" || /^\d*\.?\d*$/.test(value)) {
+      // This regex allows integers and decimals
+      setBetAmount(value);
+    }
   };
 
   return (
@@ -98,7 +109,7 @@ const DiceGame: React.FC<DiceGameProps> = ({
         <div className="input-group">
           <label htmlFor="bet-amount">Bet Amount</label>
           <input
-            type="number"
+            type="text" // Change the type to "text"
             id="bet-amount"
             value={betAmount}
             onChange={handleBetAmountChange}

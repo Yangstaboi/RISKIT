@@ -230,7 +230,7 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
       // When the option is 'suits', we check if the chosenOption matches the suit part directly
       if (option === "suits" && chosenOption === suitPart) {
         isCorrect = true;
-        payoutMultiplier = 3.8; // Set the payout multiplier for suits
+        payoutMultiplier = 3.9; // Set the payout multiplier for suits
       }
       // When the option is 'numbers', we convert the number part to its corresponding word
       // and then compare it with the chosen option after converting it using the numberWordMap
