@@ -1,0 +1,62 @@
+.dice-game-container {
+    display: flex;
+    width: 100%;
+    height: 400px; /* Adjust as needed */
+    background-color: #f4f4f4; /* Example color */
+  }
+  
+  .betting-section {
+    flex: 30%;
+    padding: 20px;
+    border-right: 2px solid #ddd; /* Separator line */
+  }
+  
+  .game-visualization-section {
+    flex: 70%;
+    padding: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  .bet-button {
+    width: 100%;
+    padding: 10px;
+    background-color: green; /* Example color */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .slider-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .slider {
+    width: 100%;
+    margin: 30px 0;
+  }
+  
+  .marks {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .marks span {
+    display: block;
+  }
+  
