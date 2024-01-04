@@ -68,6 +68,16 @@ const DiceGame: React.FC<DiceGameProps> = ({
             <span>100</span>
           </div>
         </div>
+        <div className="bottom-sections">
+          <div className="section">
+            <div className="section-title">Multiplier</div>
+            <div className="section-border">x1.00</div>
+          </div>
+          <div className="section">
+            <div className="section-title">Win Chance</div>
+            <div className="section-border">50%</div>
+          </div>
+        </div>
       </div>
     </div>
   );

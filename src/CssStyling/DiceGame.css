@@ -2,7 +2,7 @@
     margin-top:100px;
     display: flex;
     width: 80%;
-    height: 400px; /* Adjust as needed */
+    height: 400px;
   }
   
   .betting-section {
@@ -13,9 +13,14 @@
     background-color: #30203b;
     border-radius: 20px 0 0 20px;
   }
-  
+
   .game-visualization-section {
-    background-color: #6d4a86; /* Example color */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* This will center the slider container vertically */
+    align-items: center; /* This will center the slider container horizontally */
+    background-color: #6d4a86;
     flex: 70%;
     padding: 20px;
     border-radius: 0 20px 20px 0;
@@ -47,6 +52,7 @@
   }
   
   .slider-container {
+    margin-bottom:50px;
     color:white;
     position: relative;
     width: 100%;
@@ -60,9 +66,67 @@
   .marks {
     display: flex;
     justify-content: space-between;
+    position: absolute; 
+    width: 100%;
+    margin-top: -20px; 
   }
   
-  .marks span {
-    display: block;
+.marks span {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.marks span:nth-child(1) { left: 0%; }
+.marks span:nth-child(2) { left: 25%; }
+.marks span:nth-child(3) { left: 50%; }
+.marks span:nth-child(4) { left: 75%; }
+.marks span:nth-child(5) { left: 100%; }
+  
+.marks span:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    height: 10px;
+    width: 1px;
+    background-color: white;
+    transform: translateX(-50%);
+  }
+
+
+  /* Existing styles... */
+
+/* Add styles for the bottom sections */
+.bottom-sections {
+    position: absolute; /* Position the sections absolutely within their parent */
+    bottom: 20px; /* Adjust as needed for spacing from the bottom */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 50%;
+  }
+  
+  .section-title {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .section-border {
+    width: 90%;
+    border: 1px solid white;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
   }
   

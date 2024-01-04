@@ -62,12 +62,8 @@ const MainMenu: React.FC<MainMenuProps> = ({
             className="card-image"
             style={{ backgroundImage: `url(${testingImage})` }}
           ></div>
-          <div className="card-title">Poker</div>
-          <div className="card-description">
-            This is a brief description, I love playing poker and gambling all
-            my money away blah blah this is a test to see if it wraps and see
-            how nice the font
-          </div>
+          <div className="card-title">Dice</div>
+          <div className="card-description">Dice Game description</div>
         </div>
         <div className="game-card">
           <div
