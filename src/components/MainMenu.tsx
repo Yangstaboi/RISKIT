@@ -1,4 +1,4 @@
-import testingImage from "../assets/testing.png";
+import testingImage from "../assets/Testing.png";
 import MineSweeperImage from "../assets/MineSweeper.png";
 import "../CssStyling/MainMenu.css";
 import "../CssStyling/TopContainer.css";

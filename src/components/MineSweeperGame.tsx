@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../cssstyling/MinesweeperGame.css";
+import "../CssStyling/MineSweeperGame.css";
 
 interface MinesweeperGameProps {
   onHomeClick: () => void;

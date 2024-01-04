@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../cssstyling/RiskItButton.css";
+import "../CssStyling/RiskItButton.css";
 
 interface IntroPageProps {
   onMenuShow: () => void;
