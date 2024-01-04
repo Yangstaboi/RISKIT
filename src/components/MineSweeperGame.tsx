@@ -173,7 +173,7 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
             placeholder="1"
             onChange={(e) => setBetAmount(parseFloat(e.target.value))}
             min="1"
-            max={playerMoney}
+            max={playerMoney > 0 ? playerMoney : Infinity} // Set to Infinity or remove max if you do not want to limit the input
           />
         </div>
 
