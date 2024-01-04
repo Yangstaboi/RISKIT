@@ -1,5 +1,5 @@
 import "../CssStyling/DiceGame.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 interface DiceGameProps {
   onHomeClick: () => void;
@@ -12,7 +12,6 @@ const DiceGame: React.FC<DiceGameProps> = ({
   updatePlayerMoney,
   playerMoney,
 }) => {
-  const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [sliderValue, setSliderValue] = useState<number>(50);
   const [multiplier, setMultiplier] = useState<number>(2);
   const [winChance, setWinChance] = useState<number>(50);
@@ -35,12 +34,6 @@ const DiceGame: React.FC<DiceGameProps> = ({
   }, [betAmount, multiplier]);
 
   const handleHomeClick = () => {
-    if (gameStarted) {
-      const confirm = window.confirm(
-        "Are you sure you want to return home? This will end the current game."
-      );
-      if (!confirm) return;
-    }
     onHomeClick();
   };
 
@@ -52,16 +45,13 @@ const DiceGame: React.FC<DiceGameProps> = ({
     }
     // Ensure the user has entered a bet amount greater than 0
     if (playerMoney < bet) {
-      alert("You don't have enough money to place this bet."); // or handle this however you prefer
+      alert("You don't have enough money to place this bet.");
       return; // Exit the function early
     }
     if (bet <= 0) {
       setGameResult("Please enter a bet amount.");
       return;
     }
-
-    // Start the game
-    setGameStarted(true);
 
     // Generate a random number for the result
     const generatedNumber = Math.floor(Math.random() * 101);
@@ -138,14 +128,28 @@ const DiceGame: React.FC<DiceGameProps> = ({
             className="slider"
             id="bet-slider"
           />
+          {randomNumber !== null && (
+            <div
+              className="random-number-display"
+              style={{
+                left: `${randomNumber}%`,
+                marginLeft: "-12px",
+              }}
+            >
+              {randomNumber}
+              <div className="line-indicator" />
+            </div>
+          )}
           <div className="marks">
-            <span>0</span>
-            <span>25</span>
-            <span>50</span>
-            <span>75</span>
-            <span>100</span>
+            {/* Generate the marks dynamically */}
+            {Array.from({ length: 21 }, (_, index) => (
+              <span key={index} style={{ left: `${index * 5}%` }}>
+                {index * 5}
+              </span>
+            ))}
           </div>
         </div>
+
         <div className="bottom-sections">
           <div className="section">
             <div className="section-title">Multiplier</div>
@@ -156,9 +160,6 @@ const DiceGame: React.FC<DiceGameProps> = ({
             <div className="section-border">{winChance}%</div>
           </div>
         </div>
-        {randomNumber !== null && (
-          <div className="random-number-display">{`🎲 ${randomNumber}`}</div>
-        )}
       </div>
     </div>
   );
