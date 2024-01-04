@@ -188,6 +188,10 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
   };
 
   const handleCardClick = (chosenOption: string) => {
+    if (playerMoney < betAmount) {
+      alert("You don't have enough money to place this bet."); // or handle this however you prefer
+      return; // Exit the function early
+    }
     const newCardIndex = Math.floor(Math.random() * cardImages.length);
     const newCardImage = cardImages[newCardIndex];
     setSelectedCard(newCardImage);
@@ -203,7 +207,7 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
       // When the option is 'suits', we check if the chosenOption matches the suit part directly
       if (option === "suits" && chosenOption === suitPart) {
         isCorrect = true;
-        payoutMultiplier = 3.5; // Set the payout multiplier for suits
+        payoutMultiplier = 3; // Set the payout multiplier for suits
       }
       // When the option is 'numbers', we convert the number part to its corresponding word
       // and then compare it with the chosen option after converting it using the numberWordMap
