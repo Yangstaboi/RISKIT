@@ -29,6 +29,8 @@ const App: React.FC = () => {
   const goToMainMenu = () => {
     setShowMinesweeper(false);
     setIsMenuVisible(true);
+    setShowDealersRisk(false);
+    setShowDice(false);
   };
 
   const goToDealersRisk = () => {

@@ -1,9 +1,40 @@
 import "../CssStyling/DiceGame.css";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const DiceGame: React.FC = () => {
+interface DiceGameProps {
+  onHomeClick: () => void;
+  updatePlayerMoney: (amount: number) => void;
+  playerMoney: number;
+}
+
+const DiceGame: React.FC<DiceGameProps> = ({
+  onHomeClick,
+  updatePlayerMoney,
+  playerMoney,
+}) => {
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
+
+  const handleHomeClick = () => {
+    if (gameStarted) {
+      const confirm = window.confirm(
+        "Are you sure you want to return home? This will end the current game."
+      );
+      if (!confirm) return;
+    }
+    onHomeClick();
+  };
+
   return (
     <div className="dice-game-container">
+      <div className="top-container">
+        <button className="home-button" onClick={handleHomeClick}>
+          Home
+        </button>
+        <div className="player-wallet">
+          <span className="wallet-icon">🪙</span>
+          <span>${playerMoney.toFixed(2)}</span>
+        </div>
+      </div>
       <div className="betting-section">
         <div className="input-group">
           <label htmlFor="bet-amount">Bet Amount</label>

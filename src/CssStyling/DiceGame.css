@@ -1,6 +1,7 @@
 .dice-game-container {
+    margin-top:100px;
     display: flex;
-    width: 100%;
+    width: 80%;
     height: 400px; /* Adjust as needed */
     background-color: #f4f4f4; /* Example color */
   }
