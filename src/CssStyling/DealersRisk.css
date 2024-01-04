@@ -57,6 +57,7 @@
 }
   
   .card-display-section {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -165,3 +166,28 @@
     background-position: center;
     transition: transform 0.3s ease;
   }
+
+  @keyframes fadeMoveUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+  
+  .animation-message {
+    animation: fadeMoveUp 2s ease forwards;
+    position: absolute;
+    left: 50%;
+    font-size:30px;
+    transform: translateX(-50%);
+    color: green;
+  }
+  
+  .animation-message.loss {
+    color: red; 
+  }
+  

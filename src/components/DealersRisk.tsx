@@ -56,6 +56,11 @@ import jackOfClubs from "../assets/Cards/jack_of_clubs.png";
 import queenOfClubs from "../assets/Cards/queen_of_clubs.png";
 import kingOfClubs from "../assets/Cards/king_of_clubs.png";
 
+interface AnimationMessage {
+  id: number;
+  amount: string;
+}
+
 const cardImages = [
   aceOfSpades,
   twoOfSpades,
@@ -127,6 +132,9 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
 }) => {
   const [option, setOption] = useState("suits");
   const [betAmount, setBetAmount] = useState(1);
+  const [animationMessages, setAnimationMessages] = useState<
+    AnimationMessage[]
+  >([]);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const suitSymbols = {
@@ -187,6 +195,21 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
     K: "king",
   };
 
+  const addAnimationMessage = (amount: string) => {
+    const id = new Date().getTime();
+
+    setAnimationMessages((prev: AnimationMessage[]) => [
+      ...prev,
+      { id, amount },
+    ]);
+
+    setTimeout(() => {
+      setAnimationMessages((prev: AnimationMessage[]) =>
+        prev.filter((message) => message.id !== id)
+      );
+    }, 3000);
+  };
+
   const handleCardClick = (chosenOption: string) => {
     if (playerMoney < betAmount) {
       alert("You don't have enough money to place this bet."); // or handle this however you prefer
@@ -225,8 +248,10 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
       if (isCorrect) {
         const winnings = betAmount * payoutMultiplier;
         updatePlayerMoney(winnings);
+        addAnimationMessage(`+${winnings.toFixed(2)}`);
       } else {
         updatePlayerMoney(-betAmount);
+        addAnimationMessage(`-${betAmount.toFixed(2)}`);
       }
     }
   };
@@ -305,6 +330,21 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
           ) : (
             <div className="card-back"></div>
           )}
+          {animationMessages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`animation-message ${
+                msg.amount.startsWith("-") ? "loss" : ""
+              }`}
+              style={{
+                top: "-40px",
+                left: "40%",
+                zIndex: 1000,
+              }}
+            >
+              {msg.amount}
+            </div>
+          ))}
         </section>
       </div>
     </div>
