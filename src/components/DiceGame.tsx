@@ -13,6 +13,17 @@ const DiceGame: React.FC<DiceGameProps> = ({
   playerMoney,
 }) => {
   const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const [sliderValue, setSliderValue] = useState<number>(50);
+  const [multiplier, setMultiplier] = useState<number>(2);
+  const [winChance, setWinChance] = useState<number>(50);
+
+  useEffect(() => {
+    const winChance = 100 - sliderValue;
+    const multiplier = winChance > 0 ? 1 / (winChance / 100) : 0;
+
+    setWinChance(winChance);
+    setMultiplier(multiplier);
+  }, [sliderValue]);
 
   const handleHomeClick = () => {
     if (gameStarted) {
@@ -22,6 +33,10 @@ const DiceGame: React.FC<DiceGameProps> = ({
       if (!confirm) return;
     }
     onHomeClick();
+  };
+
+  const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSliderValue(Number(event.target.value));
   };
 
   return (
@@ -57,6 +72,8 @@ const DiceGame: React.FC<DiceGameProps> = ({
             type="range"
             min="0"
             max="100"
+            value={sliderValue}
+            onChange={handleSliderChange}
             className="slider"
             id="bet-slider"
           />
@@ -71,11 +88,11 @@ const DiceGame: React.FC<DiceGameProps> = ({
         <div className="bottom-sections">
           <div className="section">
             <div className="section-title">Multiplier</div>
-            <div className="section-border">x1.00</div>
+            <div className="section-border">x{multiplier.toFixed(2)}</div>
           </div>
           <div className="section">
             <div className="section-title">Win Chance</div>
-            <div className="section-border">50%</div>
+            <div className="section-border">{winChance}%</div>
           </div>
         </div>
       </div>
