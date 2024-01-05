@@ -5,6 +5,7 @@ import MainMenu from "./components/MainMenu";
 import LoginForm from "./components/LoginForm";
 import MinesweeperGame from "./components/MineSweeperGame";
 import DealersRisk from "./components/DealersRisk";
+import Roulette from "./components/Roulette";
 
 const App: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
@@ -54,7 +55,7 @@ const App: React.FC = () => {
           onFormSubmit={handleFormSubmit}
         />
       ) : showMinesweeper ? (
-        <MinesweeperGame
+        <Roulette
           onHomeClick={goToMainMenu}
           updatePlayerMoney={updatePlayerMoney}
           playerMoney={money}

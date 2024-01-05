@@ -1,4 +1,3 @@
-import react, { useState } from "react";
 
 interface PlayerWalletProps {
   playerMoney: number;
