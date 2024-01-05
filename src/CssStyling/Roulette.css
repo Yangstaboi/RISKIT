@@ -1,1 +1,186 @@
+:root {
+  --total-items: 37;
+  --container-size: 600px;
+  --item-size: 45px;
+  --radius: calc(var(--container-size) / 2);
+}
+
+.roulette-container {
+  margin-top: 100px;
+}
+
+.wheel {
+  position: relative;
+  width: var(--container-size);
+  height: var(--container-size);
+  margin: 40px auto;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+.number {
+  --angle: calc(360deg / var(--total-items));
+  position: absolute;
+  width: var(--item-size);
+  height: var(--item-size);
+  text-align: center;
+  line-height: var(--item-size);
+  border-radius: 50%;
+  background: #fff;
+  color: white;
+  font-weight: 900;
+  border: 1px solid #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.number::before {
+  content: '';
+  position: absolute;
+  width: var(--radius);
+  height: 2px;
+  background: transparent;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0 0;
+}
+
+.red {
+  background: red;
+}
+
+.black {
+  background: black;
+}
+
+.purple {
+  background: purple;
+}
+
+.number:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 0)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 0));
+}
+
+.number:nth-child(2) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 1)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 1));
+}
+
+.number:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 2)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 2));
+}
+
+.number:nth-child(4) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 3)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 3));
+}
+
+.number:nth-child(5) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 4)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 4));
+}
+
+.number:nth-child(6) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 5)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 5));
+}
+
+.number:nth-child(7) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 6)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 6));
+}
+
+.number:nth-child(8) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 7)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 7));
+}
+
+.number:nth-child(9) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 8)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 8));
+}
+
+.number:nth-child(10) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 9)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 9));
+}
+
+.number:nth-child(11) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 10)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 10));
+}
+.number:nth-child(12) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 11)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 11));
+}
+.number:nth-child(13) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 12)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 12));
+}
+.number:nth-child(14) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 13)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 13));
+}
+.number:nth-child(15) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 14)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 14));
+}
+.number:nth-child(16) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 15)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 15));
+}
+.number:nth-child(17) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 16)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 16));
+}
+.number:nth-child(18) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 17)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 17));
+}
+.number:nth-child(19) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 18)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 18));
+}
+.number:nth-child(20) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 19)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 19));
+}
+.number:nth-child(21) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 20)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 20));
+}
+.number:nth-child(22) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 21)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 21));
+}
+.number:nth-child(23) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 22)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 22));
+}
+.number:nth-child(24) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 23)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 23));
+}
+.number:nth-child(25) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 24)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 24));
+}
+.number:nth-child(26) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 25)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 25));
+}
+.number:nth-child(27) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 26)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 26));
+}
+.number:nth-child(28) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 27)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 27));
+}
+.number:nth-child(29) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 28)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 28));
+}
+.number:nth-child(30) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 29)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 29));
+}
+.number:nth-child(31) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 30)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 30));
+}
+.number:nth-child(32) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 31)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 31));
+}
+.number:nth-child(33) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 32)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 32));
+}
+
+.number:nth-child(34) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 33)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 33));
+}
+
+.number:nth-child(35) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 34)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 34));
+}
+
+.number:nth-child(36) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 35)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 35));
+}
+.number:nth-child(37) {
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) * 36)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 36));
+}
+
 
