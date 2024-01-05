@@ -14,18 +14,16 @@ const App: React.FC = () => {
   const [showDealersRisk, setShowDealersRisk] = useState<boolean>(false);
   const [showDice, setShowDice] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [money, setMoney] = useState<number>(0);
 
   const handleFormSubmit = (
     userName: string,
-    userPassword: string,
-    userMoney: number = 1000 // Default money for new users
+    userId: string,
+    userMoney: number
   ) => {
     setName(userName);
-    // Password state removed, so no need to set password here
     setMoney(userMoney);
-    setIsLoggedIn(true);
+    setIsLoggedIn(true); // Set the user as logged in
   };
 
   const updatePlayerMoney = (amount: number) => {
@@ -60,7 +58,7 @@ const App: React.FC = () => {
       ) : !isLoggedIn ? (
         <LoginForm
           userName={name}
-          userPassword={password}
+          userMoney={money}
           onFormSubmit={handleFormSubmit}
         />
       ) : showMinesweeper ? (
