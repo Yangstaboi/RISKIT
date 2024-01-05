@@ -1,0 +1,177 @@
+.dice-game-container {
+    margin-top:100px;
+    display: flex;
+    width: 80%;
+    height: 400px;
+  }
+  
+  .betting-section {
+    color:white;
+    flex: 30%;
+    padding: 20px;
+    border-right: 2px solid #ddd; /* Separator line */
+    background-color: #30203b;
+    border-radius: 20px 0 0 20px;
+  }
+
+  .game-visualization-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    background-color: #6d4a86;
+    flex: 70%;
+    padding: 20px;
+    border-radius: 0 20px 20px 0;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .profit-display {
+    margin-bottom: 20px;
+  }
+  
+  .profit-display label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  .profit-value {
+    width: 100%;
+    padding: 10px;
+    background-color: #8857a9;
+    color: #000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  
+  .bet-button {
+    width: 100%;
+    padding: 10px;
+    background-color: green; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .bet-button:hover {
+    background-color: rgb(3, 183, 3); 
+  }
+  
+  .slider-container {
+    margin-bottom:50px;
+    color:white;
+    position: relative;
+    width: 90%;
+  }
+  
+  .slider {
+    width: 100%;
+    margin: 30px 0;
+  }
+  
+  .marks {
+    display: flex;
+    justify-content: space-between;
+    position: absolute; 
+    width: 100%;
+    margin-top: -20px; 
+  }
+  
+.marks span {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+  
+  
+.marks span:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    height: 10px;
+    width: 1px;
+    background-color: white;
+    transform: translateX(-50%);
+  }
+
+.bottom-sections {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 50%;
+  }
+  
+  .section-title {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .section-border {
+    width: 90%;
+    border: 1px solid white;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+
+  .game-result {
+    color: white;
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  
+  .random-number-display {
+    position: absolute;
+    top: -5px;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    left:-30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .line-indicator {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 2px;
+    height: 10px;
+    background-color: #ffffff;
+    transform: translateX(-50%);
+  }
+  

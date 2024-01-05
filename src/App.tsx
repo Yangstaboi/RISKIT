@@ -6,12 +6,14 @@ import LoginForm from "./components/LoginForm";
 import MinesweeperGame from "./components/MineSweeperGame";
 import DealersRisk from "./components/DealersRisk";
 import Roulette from "./components/Roulette";
+import DiceGame from "./components/DiceGame";
 
 const App: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
   const [showDealersRisk, setShowDealersRisk] = useState<boolean>(false);
+  const [showDice, setShowDice] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [money, setMoney] = useState<number>(0);
 
@@ -28,6 +30,8 @@ const App: React.FC = () => {
   const goToMainMenu = () => {
     setShowMinesweeper(false);
     setIsMenuVisible(true);
+    setShowDealersRisk(false);
+    setShowDice(false);
   };
 
   const goToDealersRisk = () => {
@@ -60,10 +64,17 @@ const App: React.FC = () => {
           updatePlayerMoney={updatePlayerMoney}
           playerMoney={money}
         />
+      ) : showDice ? (
+        <DiceGame
+          onHomeClick={goToMainMenu}
+          updatePlayerMoney={updatePlayerMoney}
+          playerMoney={money}
+        />
       ) : (
         <MainMenu
           onPlayMinesweeper={() => setShowMinesweeper(true)}
           onPlayDealersRisk={goToDealersRisk}
+          onDiceGame={() => setShowDice(true)}
           playerMoney={money}
         />
       )}
