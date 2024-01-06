@@ -49,21 +49,22 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
       setError("Password must be at least 6 characters long");
       return;
     }
-    if (!email.includes("@")) {
-      console.error("Invalid email format");
-      return;
-    }
-    createUserWithEmailAndPassword(auth, email, password);
+
+    // Remove the duplicate createUserWithEmailAndPassword call
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("Registration successful with user:", userCredential.user);
+        // Registration successful
         const user = userCredential.user;
         onFormSubmit(user.email || "defaultEmail@example.com", user.uid, 1000);
         setError("");
       })
       .catch((error) => {
-        console.error("Registration error:", error);
-        setError(error.message); // Display Firebase error message
+        // Handle errors here instead of console.error
+        if (error.code === "auth/email-already-in-use") {
+          setError("The email address is already in use by another account.");
+        } else {
+          setError(error.message); // Display other Firebase error messages
+        }
       });
   };
 
