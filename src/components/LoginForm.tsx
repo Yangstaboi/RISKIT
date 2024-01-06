@@ -95,15 +95,21 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className="error-message">{error}</p>}
-          <button onClick={handleRegister}>Sign Up</button>
+          <button className="Sign-up-button" onClick={handleRegister}>
+            Sign Up
+          </button>
           <button onClick={() => setIsRegistering(false)}>
             Already have an account? Login
           </button>
         </>
       ) : (
         <>
-          <h2>Login with Google</h2>
-          <button onClick={googleSignIn}>Sign in with Google</button>
+          <button
+            className="Sign-up-button"
+            onClick={() => setIsRegistering(true)}
+          >
+            Need an account? Register
+          </button>
           <input
             type="email"
             placeholder="Email"
@@ -114,10 +120,10 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin}>Login</button>
-          <button onClick={() => setIsRegistering(true)}>
-            Need an account? Register
+          <button className="Sign-up-button" onClick={handleLogin}>
+            Login
           </button>
+          <button onClick={googleSignIn}>Sign in with Google</button>
         </>
       )}
     </div>
