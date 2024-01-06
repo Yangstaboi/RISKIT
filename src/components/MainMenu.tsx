@@ -1,6 +1,7 @@
 import testingImage from "../assets/testing.png";
 import MineSweeperImage from "../assets/MineSweeper.png";
 import "../CssStyling/MainMenu.css";
+import "../CssStyling/Cashout.css";
 import "../CssStyling/TopContainer.css";
 
 interface MainMenuProps {
@@ -25,6 +26,7 @@ const MainMenu: React.FC<MainMenuProps> = ({
           <span>${playerMoney.toFixed(2)}</span>
         </div>
       </div>
+      <div className="Cashout-button">Cashout</div>
       <div className="game-selection">
         <div className="game-card" onClick={onPlayMinesweeper}>
           <div
