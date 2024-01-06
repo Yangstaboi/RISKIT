@@ -21,9 +21,15 @@ const App: React.FC = () => {
     userId: string,
     userMoney: number
   ) => {
+    console.log("handleFormSubmit called with:", {
+      userName,
+      userId,
+      userMoney,
+    });
     setName(userName);
     setMoney(userMoney);
-    setIsLoggedIn(true); // Set the user as logged in
+    setIsLoggedIn(true);
+    setIsMenuVisible(true);
   };
 
   const updatePlayerMoney = (amount: number) => {
