@@ -44,7 +44,6 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
       })
       .catch((error) => {
         console.error(error);
-        // Handle Errors here.
       });
   };
 
@@ -75,7 +74,7 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
         setError("");
       })
       .catch((error) => {
-        // Handle errors here instead of console.error
+        // Handle errors here
         if (error.code === "auth/email-already-in-use") {
           setError("The email address is already in use by another account.");
         } else {
