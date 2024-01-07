@@ -12,7 +12,13 @@ import {
 interface LoginProps {
   userName: string;
   userMoney: number;
-  onFormSubmit: (userName: string, userId: string, userMoney: number) => void;
+  isNewUser: boolean; // Add this line if you expect isNewUser to be passed as a prop
+  onFormSubmit: (
+    userName: string,
+    userId: string,
+    userMoney: number,
+    isNewUser: boolean
+  ) => void;
 }
 
 export default function LoginForm({ onFormSubmit }: LoginProps) {
@@ -28,18 +34,25 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
         const user = result.user;
         const userRef = ref(database, `users/${user.uid}`);
         get(userRef).then((snapshot) => {
+          const isNewUser = !snapshot.exists();
           if (snapshot.exists()) {
             const userData = snapshot.val();
             onFormSubmit(
               user.displayName || "Anonymous",
               user.uid,
-              userData.money
+              userData.money || 1000,
+              isNewUser
             );
           } else {
             // Set default money for new Google sign-in users
             set(userRef, { money: 1000, email: user.email });
 
-            onFormSubmit(user.displayName || "Anonymous", user.uid, 1000);
+            onFormSubmit(
+              user.displayName || "Anonymous",
+              user.uid,
+              1000,
+              isNewUser
+            );
           }
         });
       })
@@ -72,7 +85,12 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
         const userRef = ref(database, `users/${user.uid}`);
         set(userRef, { money: 1000, email: user.email });
         // Set default money for new users
-        onFormSubmit(user.email || "defaultEmail@example.com", user.uid, 1000);
+        onFormSubmit(
+          user.email || "defaultEmail@example.com",
+          user.uid,
+          1000,
+          true
+        );
         setError("");
       })
       .catch((error) => {
@@ -91,21 +109,17 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
         const user = userCredential.user;
         const userRef = ref(database, `users/${user.uid}`);
         get(userRef).then((snapshot) => {
+          const isNewUser = !snapshot.exists(); // Determine if it's a new user
           if (snapshot.exists()) {
             const userData = snapshot.val();
             onFormSubmit(
-              user.email || "defaultEmail@example.com",
+              user.email || "Anonymous",
               user.uid,
-              userData.money
+              userData.money,
+              isNewUser // Pass isNewUser flag to the callback
             );
           } else {
-            // If user data is not found, set default money (should not happen for email/password login)
-            set(userRef, { money: 1000 });
-            onFormSubmit(
-              user.email || "defaultEmail@example.com",
-              user.uid,
-              1000
-            );
+            // This else clause should not happen for email/password sign-in, as the user is already registered
           }
         });
       })

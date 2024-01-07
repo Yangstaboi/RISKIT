@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { ref, update } from "firebase/database";
 import { database } from "./firebase-config";
-
+import UsernameSetup from "./components/UsernameSetup";
 import IntroPage from "./components/IntroPage";
 import MainMenu from "./components/MainMenu";
 import LoginForm from "./components/LoginForm";
@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
   const [showDealersRisk, setShowDealersRisk] = useState<boolean>(false);
+  const [showUsernameSetup, setShowUsernameSetup] = useState(false);
   const [userId, setUserId] = useState<string>("");
   const [showDice, setShowDice] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
@@ -23,13 +24,14 @@ const App: React.FC = () => {
   const handleFormSubmit = (
     userName: string,
     userId: string,
-    userMoney: number
+    userMoney: number,
+    isNewUser: boolean
   ) => {
     setName(userName);
-    setUserId(userId); // Set the user's ID in state
+    setUserId(userId);
     setMoney(userMoney);
     setIsLoggedIn(true);
-    setIsMenuVisible(true);
+    setShowUsernameSetup(isNewUser); // Show the username setup screen if it's a new user
   };
 
   const updatePlayerMoney = (userId: string, amount: number) => {
@@ -58,7 +60,15 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      {showDealersRisk ? (
+      {showUsernameSetup ? (
+        <UsernameSetup
+          userId={userId}
+          onUsernameSet={() => {
+            setShowUsernameSetup(false); // Hide the username setup screen
+            setIsMenuVisible(true); // Show the main menu
+          }}
+        />
+      ) : showDealersRisk ? (
         <DealersRisk
           onHomeClick={() => {
             setShowDealersRisk(false);
@@ -74,6 +84,7 @@ const App: React.FC = () => {
         <LoginForm
           userName={name}
           userMoney={money}
+          isNewUser={false} // Add this line. Assuming the default is false, adjust based on your logic
           onFormSubmit={handleFormSubmit}
         />
       ) : showMinesweeper ? (
