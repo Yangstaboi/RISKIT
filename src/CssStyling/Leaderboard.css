@@ -1,0 +1,52 @@
+/* Leaderboard.css */
+.leaderboard {
+    color:white;
+  position: fixed;
+  top: 0;
+  right: -300px; 
+  width: 300px;
+  height: 100%;
+  background: rgb(59, 0, 59);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.leaderboard.open {
+  right: 0;
+}
+
+.leaderboard-button {
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: black;
+    border-radius: 20px 0 0 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 10;
+    position: fixed;
+    top: 100px; 
+    right: 0;
+  }
+  
+  .leaderboard-button.open {
+    right: 300px;
+  }
+  
+  .leaderboard-button .arrow {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .leaderboard-title {
+    color:white;
+    text-align: center;
+    font-size:40px;
+  }

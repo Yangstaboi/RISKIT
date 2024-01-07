@@ -37,7 +37,8 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
             );
           } else {
             // Set default money for new Google sign-in users
-            set(userRef, { money: 1000 });
+            set(userRef, { money: 1000, email: user.email });
+
             onFormSubmit(user.displayName || "Anonymous", user.uid, 1000);
           }
         });
@@ -69,7 +70,8 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
         // Registration successful
         const user = userCredential.user;
         const userRef = ref(database, `users/${user.uid}`);
-        set(userRef, { money: 1000 }); // Set default money for new users
+        set(userRef, { money: 1000, email: user.email });
+        // Set default money for new users
         onFormSubmit(user.email || "defaultEmail@example.com", user.uid, 1000);
         setError("");
       })
