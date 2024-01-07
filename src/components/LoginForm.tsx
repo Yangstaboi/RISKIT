@@ -1,5 +1,7 @@
 import "../CssStyling/LoginForm.css";
 import { auth } from "../firebase-config";
+import { database } from "../firebase-config";
+import { ref, set, get } from "firebase/database";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import {
@@ -24,9 +26,21 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
-        // Provide a fallback value for displayName, e.g., 'Anonymous' or an empty string
-        const displayName = user.displayName || "Anonymous";
-        onFormSubmit(displayName, user.uid, 1000);
+        const userRef = ref(database, `users/${user.uid}`);
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            onFormSubmit(
+              user.displayName || "Anonymous",
+              user.uid,
+              userData.money
+            );
+          } else {
+            // Set default money for new Google sign-in users
+            set(userRef, { money: 1000 });
+            onFormSubmit(user.displayName || "Anonymous", user.uid, 1000);
+          }
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -55,6 +69,8 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
       .then((userCredential) => {
         // Registration successful
         const user = userCredential.user;
+        const userRef = ref(database, `users/${user.uid}`);
+        set(userRef, { money: 1000 }); // Set default money for new users
         onFormSubmit(user.email || "defaultEmail@example.com", user.uid, 1000);
         setError("");
       })
@@ -71,9 +87,26 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("Login successful with user:", userCredential.user);
         const user = userCredential.user;
-        onFormSubmit(user.email || "defaultEmail@example.com", user.uid, 1000);
+        const userRef = ref(database, `users/${user.uid}`);
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            onFormSubmit(
+              user.email || "defaultEmail@example.com",
+              user.uid,
+              userData.money
+            );
+          } else {
+            // If user data is not found, set default money (should not happen for email/password login)
+            set(userRef, { money: 1000 });
+            onFormSubmit(
+              user.email || "defaultEmail@example.com",
+              user.uid,
+              1000
+            );
+          }
+        });
       })
       .catch((error) => {
         console.error("Login error:", error);

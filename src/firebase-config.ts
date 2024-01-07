@@ -1,5 +1,6 @@
 // src/firebase-config.js
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -13,11 +14,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-// If you need Firebase Analytics, you can initialize it like this
-// const analytics = getAnalytics(app);
-
+const database = getDatabase(app);
 // Export the auth function to use it in your components
 const auth = getAuth(app);
 
-export { auth, app };
+export { auth, app, database };

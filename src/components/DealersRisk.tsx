@@ -122,13 +122,15 @@ const cardImages = [
 interface DealersRiskProps {
   onHomeClick: () => void;
   playerMoney: number;
-  updatePlayerMoney: (money: number) => void;
+  updatePlayerMoney: (userId: string, money: number) => void; // Now expects userId as well
+  userId: string; // Added userId prop
 }
 
 const DealersRisk: React.FC<DealersRiskProps> = ({
   onHomeClick,
   playerMoney,
   updatePlayerMoney,
+  userId, // Now we destructure userId from props
 }) => {
   const [option, setOption] = useState("suits");
   const [betAmount, setBetAmount] = useState(1);
@@ -247,10 +249,10 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
 
       if (isCorrect) {
         const winnings = betAmount * payoutMultiplier;
-        updatePlayerMoney(winnings - betAmount);
+        updatePlayerMoney(userId, winnings - betAmount); // Pass userId when updating money
         addAnimationMessage(`+${winnings.toFixed(2)}`);
       } else {
-        updatePlayerMoney(-betAmount);
+        updatePlayerMoney(userId, -betAmount); // Pass userId when updating money
         addAnimationMessage(`-${betAmount.toFixed(2)}`);
       }
     }

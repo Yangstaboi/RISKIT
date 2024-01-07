@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
+import { ref, update } from "firebase/database";
+import { database } from "./firebase-config";
+
 import IntroPage from "./components/IntroPage";
 import MainMenu from "./components/MainMenu";
 import LoginForm from "./components/LoginForm";
@@ -12,6 +15,7 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
   const [showDealersRisk, setShowDealersRisk] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string>("");
   const [showDice, setShowDice] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [money, setMoney] = useState<number>(0);
@@ -21,19 +25,23 @@ const App: React.FC = () => {
     userId: string,
     userMoney: number
   ) => {
-    console.log("handleFormSubmit called with:", {
-      userName,
-      userId,
-      userMoney,
-    });
     setName(userName);
+    setUserId(userId); // Set the user's ID in state
     setMoney(userMoney);
     setIsLoggedIn(true);
     setIsMenuVisible(true);
   };
 
-  const updatePlayerMoney = (amount: number) => {
-    setMoney((prevMoney) => prevMoney + amount);
+  const updatePlayerMoney = (userId: string, amount: number) => {
+    setMoney((prevMoney) => {
+      const newMoney = prevMoney + amount;
+      if (userId) {
+        // Make sure the reference points directly to the money value
+        const userMoneyRef = ref(database, `users/${userId}`);
+        update(userMoneyRef, { money: newMoney });
+      }
+      return newMoney;
+    });
   };
 
   const goToMainMenu = () => {
@@ -58,6 +66,7 @@ const App: React.FC = () => {
           }}
           updatePlayerMoney={updatePlayerMoney}
           playerMoney={money}
+          userId={userId} // Pass the userId state to DealersRisk
         />
       ) : !isMenuVisible ? (
         <IntroPage onMenuShow={() => setIsMenuVisible(true)} />
@@ -72,12 +81,14 @@ const App: React.FC = () => {
           onHomeClick={goToMainMenu}
           updatePlayerMoney={updatePlayerMoney}
           playerMoney={money}
+          userId={userId} // Pass the userId
         />
       ) : showDice ? (
         <DiceGame
           onHomeClick={goToMainMenu}
           updatePlayerMoney={updatePlayerMoney}
           playerMoney={money}
+          userId={userId} // Pass the userId
         />
       ) : (
         <MainMenu

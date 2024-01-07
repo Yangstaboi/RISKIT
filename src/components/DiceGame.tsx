@@ -3,14 +3,16 @@ import React, { useState, useEffect } from "react";
 
 interface DiceGameProps {
   onHomeClick: () => void;
-  updatePlayerMoney: (amount: number) => void;
+  updatePlayerMoney: (userId: string, amount: number) => void;
   playerMoney: number;
+  userId: string;
 }
 
 const DiceGame: React.FC<DiceGameProps> = ({
   onHomeClick,
   updatePlayerMoney,
   playerMoney,
+  userId,
 }) => {
   const [sliderValue, setSliderValue] = useState<number>(50);
   const [multiplier, setMultiplier] = useState<number>(2);
@@ -60,11 +62,11 @@ const DiceGame: React.FC<DiceGameProps> = ({
     if (sliderValue <= generatedNumber) {
       // User wins, calculate profit
       const profit = bet * multiplier;
-      updatePlayerMoney(profit - bet);
+      updatePlayerMoney(userId, profit - bet);
       setGameResult(`You won! Number was ${generatedNumber}.`);
     } else {
       // User loses, subtract bet amount
-      updatePlayerMoney(-bet);
+      updatePlayerMoney(userId, -bet);
       setGameResult(`You lost! Number was ${generatedNumber}.`);
     }
   };
