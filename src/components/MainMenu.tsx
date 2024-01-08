@@ -7,6 +7,7 @@ interface MainMenuProps {
   onPlayMinesweeper: () => void;
   onPlayDealersRisk: () => void;
   onDiceGame: () => void;
+  onRoulette: () => void;
   playerMoney: number;
 }
 
@@ -14,6 +15,7 @@ const MainMenu: React.FC<MainMenuProps> = ({
   onPlayMinesweeper,
   onPlayDealersRisk,
   onDiceGame,
+  onRoulette,
   playerMoney,
 }) => {
   return (
@@ -44,16 +46,14 @@ const MainMenu: React.FC<MainMenuProps> = ({
           <div className="card-description">Dealers Risk</div>
         </div>
 
-        <div className="game-card">
+        <div className="game-card" onClick={() => onRoulette()}>
           <div
             className="card-image"
             style={{ backgroundImage: `url(${testingImage})` }}
           ></div>
-          <div className="card-title">Poker</div>
+          <div className="card-title">Roulette</div>
           <div className="card-description">
-            This is a brief description, I love playing poker and gambling all
-            my money away blah blah this is a test to see if it wraps and see
-            how nice the font
+            This is a brief description of Roulette
           </div>
         </div>
 

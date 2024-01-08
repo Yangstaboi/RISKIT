@@ -13,6 +13,7 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [showMinesweeper, setShowMinesweeper] = useState<boolean>(false);
   const [showDealersRisk, setShowDealersRisk] = useState<boolean>(false);
+  const [showRoulette, setShowRoulette] = useState<boolean>(false);
   const [showDice, setShowDice] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [money, setMoney] = useState<number>(0);
@@ -31,6 +32,7 @@ const App: React.FC = () => {
     setShowMinesweeper(false);
     setIsMenuVisible(true);
     setShowDealersRisk(false);
+    setShowRoulette(false);
     setShowDice(false);
   };
 
@@ -58,8 +60,14 @@ const App: React.FC = () => {
           userMoney={money}
           onFormSubmit={handleFormSubmit}
         />
-      ) : showMinesweeper ? (
+      ) : showRoulette ? (
         <Roulette
+          onHomeClick={goToMainMenu}
+          updatePlayerMoney={updatePlayerMoney}
+          playerMoney={money}
+        />
+      ) : showMinesweeper ? (
+        <MinesweeperGame
           onHomeClick={goToMainMenu}
           updatePlayerMoney={updatePlayerMoney}
           playerMoney={money}
@@ -75,6 +83,7 @@ const App: React.FC = () => {
           onPlayMinesweeper={() => setShowMinesweeper(true)}
           onPlayDealersRisk={goToDealersRisk}
           onDiceGame={() => setShowDice(true)}
+          onRoulette={() => setShowRoulette(true)}
           playerMoney={money}
         />
       )}
