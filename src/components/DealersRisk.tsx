@@ -270,7 +270,7 @@ const DealersRisk: React.FC<DealersRiskProps> = ({
         </div>
       </div>
       <div className="betting-and-card-container">
-        <div className="betting-container">
+        <div className="betting-container-dealers">
           <div className="option-buttons">
             <button
               onClick={() => setOption("suits")}
