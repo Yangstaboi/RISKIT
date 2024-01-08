@@ -5,7 +5,7 @@ import "../CssStyling/Leaderboard.css";
 
 interface LeaderboardEntry {
   uid: string;
-  email: string;
+  username: string;
   money: number;
 }
 
@@ -25,7 +25,8 @@ const Leaderboard: React.FC = () => {
       const leaderboard = Object.keys(usersSnapshot || {})
         .map((key) => ({
           uid: key,
-          email: usersSnapshot[key].email,
+          // Check for the username field, fall back to "Unknown" if not present
+          username: usersSnapshot[key].username || "Unknown",
           money: Number(usersSnapshot[key].money),
         }))
         .sort((a, b) => b.money - a.money);
@@ -34,22 +35,14 @@ const Leaderboard: React.FC = () => {
     });
 
     // Cleanup function to unsubscribe
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
+    return () => unsubscribe();
   }, []);
 
-  const leaderboardListItems = leaderboardData.map((user) => {
-    // Make sure email exists before calling split
-    const emailName = user.email ? user.email.split("@")[0] : "Unknown";
-    return (
-      <li key={user.uid}>
-        {emailName}: ${user.money.toFixed(2)}
-      </li>
-    );
-  });
+  const leaderboardListItems = leaderboardData.map((user) => (
+    <li key={user.uid}>
+      {user.username}: ${user.money.toFixed(2)}
+    </li>
+  ));
 
   const toggleLeaderboard = () => {
     setIsOpen(!isOpen);
