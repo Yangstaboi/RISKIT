@@ -58,6 +58,89 @@
   background: purple;
 }
 
+.game-container {
+  width: 1000px;
+  text-align: center;
+}
+
+.roulette-container .spin {
+  background-color: purple;
+  color: white;
+  border-radius: 20px;
+  margin-top: 10px;
+  width: 200px;
+  padding: 10px 0;
+}
+
+.highlight {
+  border: 3px solid orange;
+}
+
+.win-display {
+  position: relative;
+  top: -450px;
+  color: white;
+}
+
+.betting-container {
+  background: #ba8fc7;
+  border-radius: 20px;
+  margin: auto;
+  min-width: 500px;
+  min-height: 200px;
+}
+
+.betting-amount {
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.checkbox-label{ 
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  width: 100px;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container {
+  margin: 35px auto;
+}
+
+.error-message {
+  color:red;
+  margin-top: 10px;
+  text-align: center;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .number:nth-child(1) {
   transform: translate(-50%, -50%) rotate(calc(var(--angle) * 0)) translate(var(--radius)) rotate(calc(-1 * var(--angle) * 0));
 }
