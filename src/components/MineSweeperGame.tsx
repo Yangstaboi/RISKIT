@@ -3,14 +3,16 @@ import "../CssStyling/MineSweeperGame.css";
 
 interface MinesweeperGameProps {
   onHomeClick: () => void;
-  updatePlayerMoney: (amount: number) => void;
+  updatePlayerMoney: (userId: string, amount: number) => void;
   playerMoney: number;
+  userId: string;
 }
 
 const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
   onHomeClick,
   updatePlayerMoney,
   playerMoney,
+  userId,
 }) => {
   const [betAmount, setBetAmount] = useState<number>(0);
   const [mineCount, setMineCount] = useState<number>(1);
@@ -118,7 +120,7 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
       setTimeout(() => setFlippingCell(null), 300);
       console.log("Before hitting mine:", playerMoney);
       setGameStarted(false);
-      updatePlayerMoney(-betAmount);
+      updatePlayerMoney(userId, -betAmount);
       console.log("After hitting mine:", playerMoney);
       setGameOver(true);
       revealGrid();
@@ -137,7 +139,7 @@ const MinesweeperGame: React.FC<MinesweeperGameProps> = ({
   };
 
   const handleCashOut = () => {
-    updatePlayerMoney(profit);
+    updatePlayerMoney(userId, profit);
     setGameStarted(false);
     initializeGrid();
   };

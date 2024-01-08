@@ -4,8 +4,9 @@ import "../CssStyling/Roulette.css";
 
 interface RouletteProps {
   onHomeClick: () => void;
-  updatePlayerMoney: (amount: number) => void;
+  updatePlayerMoney: (userId: string, amount: number) => void;
   playerMoney: number;
+  userId: string;
 }
 
 const numbers = [
@@ -22,6 +23,7 @@ const Roulette: React.FC<RouletteProps> = ({
   onHomeClick,
   updatePlayerMoney,
   playerMoney,
+  userId,
 }) => {
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [highlightedNumber, setHighlightedNumber] = useState<number | null>(
@@ -73,7 +75,7 @@ const Roulette: React.FC<RouletteProps> = ({
     console.log(`Winning Color: ${color}`);
     const winMultiplier = color === "purple" ? 35 : 2;
     if (color === betColor) {
-      updatePlayerMoney(parseFloat(betAmount) * winMultiplier);
+      updatePlayerMoney(userId, parseFloat(betAmount) * winMultiplier);
     }
   };
 
@@ -96,7 +98,7 @@ const Roulette: React.FC<RouletteProps> = ({
       return;
     }
     setErrorMessage("");
-    updatePlayerMoney(-bet);
+    updatePlayerMoney(userId, -bet);
     spinWheel();
   };
 
