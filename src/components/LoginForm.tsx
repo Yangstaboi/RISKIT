@@ -12,7 +12,7 @@ import {
 interface LoginProps {
   userName: string;
   userMoney: number;
-  isNewUser: boolean; // Add this line if you expect isNewUser to be passed as a prop
+  isNewUser: boolean;
   onFormSubmit: (
     userName: string,
     userId: string,
@@ -94,11 +94,10 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
         setError("");
       })
       .catch((error) => {
-        // Handle errors here
         if (error.code === "auth/email-already-in-use") {
           setError("The email address is already in use by another account.");
         } else {
-          setError(error.message); // Display other Firebase error messages
+          setError(error.message);
         }
       });
   };
@@ -116,7 +115,7 @@ export default function LoginForm({ onFormSubmit }: LoginProps) {
               user.email || "Anonymous",
               user.uid,
               userData.money,
-              isNewUser // Pass isNewUser flag to the callback
+              isNewUser
             );
           } else {
             // This else clause should not happen for email/password sign-in, as the user is already registered

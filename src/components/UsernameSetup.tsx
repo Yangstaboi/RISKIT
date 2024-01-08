@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import { ref, update } from "firebase/database";
 import { database } from "../firebase-config";
+import "../CssStyling/LoginForm.css";
 
 // Define an interface for the component's props
 interface UsernameSetupProps {
   userId: string;
-  onUsernameSet: () => void; // Assuming this is a callback with no parameters
+  onUsernameSet: () => void;
 }
 
 // Use the interface with your component
@@ -24,14 +25,18 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({
   };
 
   return (
-    <div>
+    <div className="login-form">
+      <h2>Set Your Username</h2>
       <input
+        className="username-input"
         type="text"
         placeholder="Enter your username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <button onClick={handleSubmit}>Submit</button>
+      <button className="Sign-up-button" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 };
