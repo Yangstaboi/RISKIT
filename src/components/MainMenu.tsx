@@ -42,7 +42,16 @@ const MainMenu: React.FC<MainMenuProps> = ({
             style={{ backgroundImage: `url(${MineSweeperImage})` }}
           ></div>
           <div className="card-title">Minesweeper</div>
-          <div className="card-description">Click to play Minesweeper!</div>
+          <div className="card-description">
+            In a 5x5 grid with 25 cells, choose how much money you want to bet
+            with and how many mines you want there to be, for every cell you
+            click that isn't a mine, you get exponentially more money.
+            <p></p>
+            <p>
+              But once you click a mine, all the money you betted with
+              disappears
+            </p>
+          </div>
         </div>
 
         <div className="game-card" onClick={() => onPlayDealersRisk()}>
@@ -51,7 +60,16 @@ const MainMenu: React.FC<MainMenuProps> = ({
             style={{ backgroundImage: `url(${DealersRiskImage})` }}
           ></div>
           <div className="card-title">DealersRisk</div>
-          <div className="card-description">Dealers Risk</div>
+          <div className="card-description">
+            Imagine you are waiting for the river card in poker and you are
+            praying that your flush draw gets drawn.
+            <p></p>
+            <p>
+              Well this game lets you bet which card comes next, except this
+              isn't poker and this isn't your river card
+            </p>
+            <p>Whether you bet suits or numbers, may the odds be against you</p>
+          </div>
         </div>
 
         <div className="game-card" onClick={() => onRoulette()}>
@@ -61,7 +79,13 @@ const MainMenu: React.FC<MainMenuProps> = ({
           ></div>
           <div className="card-title">Roulette</div>
           <div className="card-description">
-            This is a brief description of Roulette
+            Choose between 3 colours to bet on
+            <p></p>
+            <p>
+              Double your bets with red or black or 36x your bet with purple!
+            </p>
+            <p></p>
+            <p>Spin the wheel and pray!</p>
           </div>
         </div>
 
@@ -71,7 +95,13 @@ const MainMenu: React.FC<MainMenuProps> = ({
             style={{ backgroundImage: `url(${DiceImage})` }}
           ></div>
           <div className="card-title">Dice</div>
-          <div className="card-description">Dice Game description</div>
+          <div className="card-description">
+            Guess a number between 1 and 99
+            <p></p>
+            <p>If the dice rolls a number bigger than your guess, you win</p>
+            <p></p>
+            <p>Otherwise you lose</p>
+          </div>
         </div>
         <div className="game-card">
           <div
