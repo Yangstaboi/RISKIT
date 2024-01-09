@@ -1,5 +1,8 @@
 import testingImage from "../assets/Testing.png";
-import MineSweeperImage from "../assets/MineSweeper.png";
+import MineSweeperImage from "../assets/MineSweeperImage.png";
+import DiceImage from "../assets/DiceImage.png";
+import RouletteImage from "../assets/RouletteImage.png";
+import DealersRiskImage from "../assets/DealersRiskImage.png";
 import Leaderboard from "./Leaderboard";
 import "../CssStyling/MainMenu.css";
 import "../CssStyling/Cashout.css";
@@ -45,7 +48,7 @@ const MainMenu: React.FC<MainMenuProps> = ({
         <div className="game-card" onClick={() => onPlayDealersRisk()}>
           <div
             className="card-image"
-            style={{ backgroundImage: `url(${testingImage})` }}
+            style={{ backgroundImage: `url(${DealersRiskImage})` }}
           ></div>
           <div className="card-title">DealersRisk</div>
           <div className="card-description">Dealers Risk</div>
@@ -54,7 +57,7 @@ const MainMenu: React.FC<MainMenuProps> = ({
         <div className="game-card" onClick={() => onRoulette()}>
           <div
             className="card-image"
-            style={{ backgroundImage: `url(${testingImage})` }}
+            style={{ backgroundImage: `url(${RouletteImage})` }}
           ></div>
           <div className="card-title">Roulette</div>
           <div className="card-description">
@@ -65,7 +68,7 @@ const MainMenu: React.FC<MainMenuProps> = ({
         <div className="game-card" onClick={() => onDiceGame()}>
           <div
             className="card-image"
-            style={{ backgroundImage: `url(${testingImage})` }}
+            style={{ backgroundImage: `url(${DiceImage})` }}
           ></div>
           <div className="card-title">Dice</div>
           <div className="card-description">Dice Game description</div>
